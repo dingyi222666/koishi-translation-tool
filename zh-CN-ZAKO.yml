@@ -79,7 +79,7 @@ commands:
     description: 哦？猜单词？就这点也想难住我？( ･ิω･ิ)  说吧，大叔，你想让我猜什么？  呐~反正大叔也很闲吧
     options:
       quit: 再见了，大叔~  哼~(๑˃̵ᴗ˂̵)و  反正大叔也很闲吧
-    usage: 哼，就这？这点小游戏也想难住本小姐？看本小姐怎么玩死你！ 呐~反正大叔也很闲吧
+    usage: 猜单词游戏：10次机会猜一个英文单词，每次猜一个字母，猜对显示位置，猜错扣除一次机会，机会用完游戏结束。
     messages:
       idle: 没有正在进行的吊死鬼游戏。输入“吊死鬼”开始一轮游戏。
       start: 游戏开始，猜{0}，还有10次机会。
@@ -155,7 +155,7 @@ commands:
       remove-success: 账号解绑成功！
       remove-original: 无法解除绑定：这是你的原始账号。
   echo:
-    description: 大叔，想干嘛呢？
+    description: 发送消息
     options:
       escape: 发送转义消息
       unescape: 发送反转义消息
@@ -167,7 +167,11 @@ commands:
       platform-not-found: 找不到指定的平台。
   inspect:
     description: 查看用户、频道或消息的详细信息
-    usage: 大叔想干嘛？这些指令我看不懂呢~呐~反正大叔也很闲吧
+    usage: 'inspect @user
+
+      inspect #channel
+
+      inspect'
     messages:
       invalid: 参数无法解析。 ( ಠ益ಠ )
       user: 用户 ID：{id}
@@ -221,7 +225,7 @@ commands:
     config:
       description: 房间设置
       options:
-        capacity: 大叔问这个干嘛？难道想开派对？
+        capacity: 最大人数
         name: 哼，房间？大叔你对我的房间感兴趣？难道想偷偷溜进来？
         private:
           'false': 公开房间？哼，大叔想做什么？
@@ -253,7 +257,7 @@ commands:
     start:
       description: 呵，游戏？大叔想玩什么花样呢？  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
   talk:
-    description: 房间里？大叔，你这是想干嘛呢？(*ノ` ▽´)
+    description: 房间内发言
     messages:
       disabled: 当前阶段房间内禁止发言。
       expect-content: 大叔，想让我帮你润色什么？快点说呀，人家可是很忙的哦~
@@ -314,7 +318,7 @@ commands:
         header: 哼，目标频道列表？大叔你这是在命令我吗？
   shutdown:
     description: 关闭或重启Koishi
-    usage: 关/重启Koishi，用时间字符串（now，hh:mm，+m）指定时间，now/ +0 即刻执行，无参数则默认+1分钟后执行。可选：关闭前向在线用户发送墙。
+    usage: 关/重启 Koishi，用时间字符串(now, hh:mm, +m)指定时间，now/+0 立即关机，无参数则 1 分钟后关机，可预先发送墙消息。
     options:
       reboot: 软重启
       rebootHard: 硬重启
@@ -365,9 +369,9 @@ commands:
       list: 各定时器的生效时间为：
       item: <p>{0}：剩余 <i18n:time value={1}/></p>
       none: 没有定时器在运行哦~
-      updated: 哼，就这点本事？  呐~反正大叔也很闲吧
+      updated: 设置成功。
   recall:
-    description: ( ˘ ³˘)♥  大叔想让我干嘛呢？  呐~反正大叔也很闲吧
+    description: 撤回机器人发送的消息
     messages:
       no-recent: 近期没有发送消息。
   schedule:
@@ -391,7 +395,7 @@ commands:
       date-invalid-suggestion: 请输入合法的日期。你要输入的是不是{0}？
       date-expected: 现在是{当前时间}，大叔~  呐~反正大叔也很闲吧
       date-past: 大叔，这点小事就想难住人家？
-      interval-invalid: 10分钟呐~反正大叔也很闲吧
+      interval-invalid: 合法的时间间隔？大叔你不会是连这点都搞不定吧？
       interval-too-short: 时间太短了，大叔
   teach:
     options:
@@ -416,15 +420,15 @@ commands:
       recursive: 禁用递归查询
       pipe: 对每个搜索结果执行操作
       review: 啧，大叔想看我最近做了什么？真无聊～  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
-      revert: 好的，大叔。  (๑˃̵ᴗ˂̵)و
+      revert: 回退最近的修改
       includeLast: 大叔想知道我最近改了多少次？哼，我才不会告诉你呢！
-      excludeLast: 大叔想干嘛？
+      excludeLast: 排除最近改的
       target: 大叔想干嘛？想重新问问题？还是想改掉之前的问题？说清楚点儿啊，别磨磨唧唧的！
-      remove: 好的，大叔。  ( ｀ー´)ノ
+      remove: 彻底删除问答
       ignoreHint: 忽略智能提示
       regexp:
         'true': 大叔想用正则表达式匹配什么？说来听听，别磨磨蹭蹭的！(*ノ` ▽´)
-        'false': 好的，大叔。  (๑˃̵ᴗ˂̵)و
+        'false': 别用正则表达式了，烦死了
       redirect: 重定向到其他问答？大叔是想甩掉人家吗？哼(ノ`Д´)ノ
       probabilityStrict: 什么？大叔想让我帮你设置触发权重？就这点小事就想难住我？  (｀Д´)ﾉ  这种事，哼，简单得很呐~反正大叔也很闲吧
       probabilityAppellative: 就这点就想难住我？
@@ -437,7 +441,7 @@ commands:
       context:
         'true': 随便啦，反正大叔也很闲吧~呐~
         'false': 啧，真麻烦呐~  就大叔一个能让我费心？  呐~反正大叔也很闲吧
-      startTime: 啧，大叔问这个干嘛？  想知道我几点起床方便来偷窥吗？ 哼~  呐~反正大叔也很闲吧
+      startTime: 起始时间
       endTime: 结束时间？大叔这是在赶我走吗？(╯‵□′)╯︵┻━┻  呐~反正大叔也很闲吧
     messages:
       writer:
@@ -465,7 +469,7 @@ commands:
       too-many-arguments: 大叔，你的指令啰嗦死了！参数多余啦！检查一下语法，或者把那些长长的、有空格或换行的问答用引号括起来！
       missing-question-or-answer: 大叔，你这问题提得，跟个智障似的。
       prohibited-command: 禁止在教学回答中插值调用 {0} 指令。
-      prohibited-cq-code: 好的，大叔。  ( ｡ớ ₃ ớ)ﾉ♡
+      prohibited-cq-code: 问题必须是纯文本。
       illegal-regexp: 问题含有错误的或不支持的正则表达式语法。
       probably-modify-answer: .
       probably-regexp: 推测你想{0}的问题是正则表达式。句号.添加-x选项，-I忽略此提示
@@ -552,7 +556,7 @@ commands:
     messages:
       expect-text: 大叔，想让我帮你润色点什么？说吧，别磨磨唧唧的
   callme:
-    description: 叫我亚亚就好，大叔。
+    description: 大叔想怎么叫人家呢？哼，别想占人家便宜哦~
     messages:
       current: 好的呢，{0}！
       unnamed: 还不给人家起个称呼呢~哼
