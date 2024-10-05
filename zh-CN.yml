@@ -1,0 +1,784 @@
+commands:
+  translate:
+    description: 文本翻译
+    options:
+      source: 源语言 (默认为自动匹配)
+      target: 目标语言 (默认为中文)
+    messages:
+      expect-input: 请输入要翻译的文本。
+      output: |-
+        原文本：{input}
+        语言：{source} -> {target}
+        翻译结果：{output}
+  novelai:
+    description: AI 画图
+    usage: |-
+      输入用逗号隔开的英文标签，例如 Mr.Quin, dark sword, red eyes。
+      查找标签可以使用 Danbooru。
+      快来给仓库点个 star 吧：https://github.com/koishijs/novelai-bot
+    options:
+      enhance: 图片增强模式
+      model: 设定生成模型
+      resolution: 设定图片尺寸
+      override: 禁用默认标签
+      sampler: 设置采样器
+      seed: 设置随机种子
+      steps: 设置迭代步数
+      scale: 设置对输入的服从度
+      strength: 图片修改幅度
+      noise: 图片噪声强度
+      hiresFix: 启用高分辨率修复
+      undesired: 排除标签
+      noTranslator: 禁用自动翻译
+      iterations: 设置绘制次数
+    messages:
+      exceed-max-iteration: 超过最大绘制次数。
+      expect-prompt: 请输入标签。
+      expect-image: 请输入图片。
+      latin-only: 只接受英文输入。
+      too-many-words: 输入的单词数量过多。
+      forbidden-word: 输入含有违禁词。
+      concurrent-jobs: |-
+        <random>
+        <>等会再约稿吧，我已经忙不过来了……</>
+        <>是数位板没电了，才…才不是我不想画呢！</>
+        <>那你得先教我画画（理直气壮</>
+        </random>
+      waiting: |-
+        <random>
+        <>少女绘画中……</>
+        <>在画了在画了</>
+        <>你就在此地不要走动，等我给你画一幅</>
+        </random>
+      pending: 在画了在画了，不过前面还有 {0} 个稿……
+      invalid-size: 增强功能仅适用于被生成的图片。普通的 img2img 请直接使用「约稿」而不是「增强」。
+      invalid-resolution: 非法的图片尺寸。宽高必须都为 64 的倍数。
+      custom-resolution-unsupported: 不支持自定义图片尺寸。
+      file-too-large: 文件体积过大。
+      unsupported-file-type: 不支持的文件格式。
+      download-error: 图片解析失败。
+      unknown-error: 发生未知错误。
+      response-error: 发生未知错误 ({0})。
+      empty-response: 服务器返回了空白图片，请稍后重试。
+      request-failed: 请求失败 ({0})，请稍后重试。
+      request-timeout: 请求超时。
+      invalid-password: 邮箱或密码错误。
+      invalid-token: 令牌无效或已过期，请联系管理员。
+      unauthorized: 令牌未授权，可能需要续费，请联系管理员。
+    upscale:
+      description: AI 放大图片
+      options:
+        scale: 设置放大倍数
+        resolution: 设定放大尺寸
+        crop: 是否裁剪以适应尺寸
+        upscaler: 设置放大模型
+        upscaler2: 设置放大模型 2
+        upscaler2visibility: 设置放大模型 2 的可见度
+        upscaleFirst: 先放大再执行面部修复
+      messages:
+        expect-image: 请输入图片。
+        download-error: 图片解析失败。
+        unknown-error: 发生未知错误。
+  hangman:
+    description: 猜单词
+    options:
+      quit: 退出游戏
+    usage: |-
+      系统将生成一个随机的英文词汇，玩家的目标是猜出这个词，共有 10 次尝试机会。
+      每次可以猜测一个字母，如果在词中出现则会提示出现位置，否则会消耗一次尝试机会。尝试机会用完则游戏失败。
+    messages:
+      idle: 没有正在进行的吊死鬼游戏。输入“吊死鬼”开始一轮游戏。
+      start: 游戏开始，要猜的词为 {0}，剩余 10 次机会。
+      stop: 游戏结束。
+      history-clean: 当前要猜的词为 {current}，剩余 {chances} 次机会。
+      history: 当前要猜的词为 {current}，已使用的字母为 {history}，剩余 {chances} 次机会。
+      right: 尝试成功！剩余字母为 {current}，已使用的字母为 {history}，剩余 {chances} 次机会。
+      wrong: 尝试失败！剩余字母为 {current}，已使用的字母为 {history}，剩余 {chances} 次机会。
+      answer: '{text}'
+      win: |-
+        尝试成功！恭喜 {1} 回答正确！
+        正确答案为：{0}。
+      lose: |-
+        尝试失败！由于机会已耗尽，游戏结束。
+        正确答案为：{0}。
+      char-used: 该字母已经使用过，换一个叭~
+      char-invalid: 请输入英文字母进行猜测。
+  switch:
+    description: 启用和禁用指令
+    messages:
+      forbidden: 您无权修改 {0} 功能。
+      list-enabled: 当前启用的功能有：{0}
+      list-disabled: 当前禁用的功能有：{0}
+      none: 当前没有启用或禁用功能。
+      conflict: 选项冲突。
+      unchanged: 无任何更改。
+      reset-ready: 要重置所有功能，使用-R参数。
+      reset: 已重置所有功能。
+      enabled: 启用 {0} 功能
+      disabled: 禁用 {0} 功能
+      output: 已{0}。
+  $: 指令系统
+  help:
+    description: 显示帮助信息
+    shortcuts:
+      help: 帮助
+    options:
+      help: 显示此信息
+      authority: 显示权限设置
+      showHidden: 查看隐藏的选项和指令
+    messages:
+      not-found: 指令未找到。
+      hint-authority: 括号内为对应的最低权限等级
+      hint-subcommand: 标有星号的表示含有子指令
+      command-title: 指令：{0}
+      command-aliases: 别名：{0}。
+      command-examples: 使用示例：
+      command-authority: 最低权限：{0} 级。
+      subcommand-prolog: 可用的子指令有{0}：
+      global-prolog: 当前可用的指令有{0}：
+      global-epilog: 输入“{0}help 指令名”查看特定指令的语法和使用示例。
+      available-options: 可用的选项有：
+      available-options-with-authority: 可用的选项有（括号内为额外要求的权限等级）：
+  user:
+    description: 用户管理
+    locale:
+      description: 语言偏好
+  channel:
+    description: 频道管理
+    locale:
+      description: 语言偏好
+  authorize:
+    description: 权限管理
+  assign:
+    description: 受理者账号
+  bind:
+    description: 绑定到账号
+    options:
+      remove: 解除绑定
+    messages:
+      generated-1: |-
+        Bind 指令可用于在多个平台间绑定用户数据。绑定过程中，原始平台的用户数据将完全保留，而目标平台的用户数据将被原始平台的数据所覆盖。
+        请确认当前平台是你的目标平台，并在 5 分钟内使用你的账号在原始平台内向机器人发送以下文本：
+        {0}
+        绑定完成后，你可以随时使用「bind -r」来解除绑定状态。
+      generated-2: |-
+        令牌核验成功！下面将进行第二步操作。
+        请在 5 分钟内使用你的账号在目标平台内向机器人发送以下文本：
+        {0}
+        注意：当前平台是你的原始平台，这里的用户数据将覆盖目标平台的数据。
+      self-1: 请前往原始平台输入。
+      self-2: 请前往目标平台输入。
+      success: 账号绑定成功！
+      remove-success: 账号解绑成功！
+      remove-original: 无法解除绑定：这是你的原始账号。
+  echo:
+    description: 发送消息
+    options:
+      escape: 发送转义消息
+      unescape: 发送反转义消息
+      user: 发送到用户
+      channel: 发送到频道
+      guild: 指定群组编号
+    messages:
+      expect-text: 请输入要发送的文本。
+      platform-not-found: 找不到指定的平台。
+  inspect:
+    description: 查看用户、频道或消息的详细信息
+    usage: |-
+      inspect @user
+      inspect #channel
+      inspect
+    messages:
+      invalid: 参数无法解析。
+      user: 用户 ID：{id}
+      channel: 频道 ID：{id}
+      message: |-
+        平台名：{platform}
+        消息 ID：{messageId}
+        频道 ID：{channelId}
+        群组 ID：{guildId}
+        用户 ID：{userId}
+        自身 ID：{selfId}
+  game:
+    description: 游戏列表
+  lobby:
+    description: 游戏大厅
+    list:
+      description: 房间列表
+      messages:
+        empty: 当前没有房间。
+        status:
+          playing: 游戏中
+          waiting: 等待中
+          idle: 闲置中
+        header: 房号    名称    人数    房主    状态
+        room: <p>{id}  {options.name || '未命名'}  {size}/{options.capacity}  {host.name}  <i18n
+          path={"commands.lobby.list.messages.status." + status}/></p>
+        footer: 私聊机器人输入「lobby create」创建房间，输入「lobby join 房间号」加入房间。
+    room:
+      description: 查看房间
+      messages:
+        overview: |-
+          房号：{id}
+          房主：{host}
+          成员列表：
+          {players}
+        talk-free: 你发送的所有消息将在房间内广播。
+        talk-prefix: 发送「{0}内容」可在房间内发言。
+    create:
+      description: 创建房间
+      options:
+        capacity: 最大人数
+        name: 房间名称
+        private:
+          'false': 公开房间
+      messages:
+        success: 房间创建成功，编号为 {id}。
+    config:
+      description: 房间设置
+      options:
+        capacity: 最大人数
+        name: 房间名称
+        private:
+          'false': 公开房间
+      messages:
+        success: 设置修改成功！
+    join:
+      description: 加入房间
+      messages:
+        success: 加入房间成功！
+        full: 该房间人数已满，无法加入。
+        locked: 该房间已被锁定，无法加入。
+        sync: 将同步推送房间 {0} 的消息。
+    leave:
+      description: 离开房间
+      messages:
+        success: 已成功离开房间。
+        transfer-or-destroy: |-
+          离开房间前可选择将房间转移给其他人：
+          {players}
+          请输入玩家编号以转移房主。输入 0 将直接解散房间。输入任何其他内容将取消操作。
+        timeout: 操作超时，已自动取消。
+    kick:
+      description: 踢出房间
+      messages:
+        expect-id: 请输入要踢出的玩家编号。
+    transfer:
+      description: 转移房主
+      messages:
+        expect-id: 请输入要转移给的玩家编号。
+    destroy:
+      description: 解散房间
+    start:
+      description: 开始游戏
+  talk:
+    description: 房间内发言
+    messages:
+      disabled: 当前阶段房间内禁止发言。
+      expect-content: 请输入要发送的内容。
+  mahjong:
+    description: 麻将
+  rps:
+    description: 石头剪刀布
+    options:
+      rounds: 获胜局数
+      timeout: 出招限时
+  uno:
+    description: UNO!
+  sudo:
+    description: 在特定上下文中触发指令
+    options:
+      user: 切换用户身份
+      channel: 切换触发频道
+      direct: 模拟私聊触发
+    messages:
+      expect-command: 请输入要触发的指令。
+      expect-context: 请提供新的上下文。
+      direct-channel: --channel 和 --direct 无法同时使用。
+  feedback:
+    description: 发送反馈信息给作者
+    options:
+      receive:
+        'true': 添加到反馈频道列表
+        'false': 从反馈频道列表移除
+    messages:
+      expect-text: 请输入要发送的文本。
+      receive: |-
+        收到来自 {0} 的反馈信息：
+        {1}
+      success: 反馈信息发送成功！
+      updated: 反馈频道更新成功！
+      not-modified: 反馈频道没有改动。
+  forward:
+    description: 设置消息转发
+    usage: 当前频道 ID：{cid}
+    add:
+      description: 添加目标频道
+      messages:
+        unchanged: '{0} 已经是当前频道的目标频道。'
+        updated: 已成功添加目标频道 {0}。
+    remove:
+      description: 移除目标频道
+      messages:
+        unchanged: '{0} 不是当前频道的目标频道。'
+        updated: 已成功移除目标频道 {0}。
+    clear:
+      description: 移除全部目标频道
+      messages:
+        updated: 已成功移除全部目标频道。
+    list:
+      description: 查看目标频道列表
+      messages:
+        empty: 当前频道没有设置目标频道。
+        header: 当前频道的目标频道列表为：
+  shutdown:
+    description: 关闭或重启 Koishi
+    usage: |-
+      此指令可用于关闭或重启 Koishi。
+      第一个参数是一个时间字符串 (通常是“now”)。
+      时间字符串用于指定执行关机的时间。可以是“hh:mm”格式的小时/分钟，也可以直接通过“+m”中表示从现在开始指定的分钟数 m。
+      “now”是“+0”的别名，即触发立即关闭。如果未指定时间参数，则默认“+1”。
+      可选地，这之后可能会在关闭之前向所有登录用户发送一条墙消息。
+    options:
+      reboot: 软重启
+      rebootHard: 硬重启
+      wall: 发送提示信息
+      clear: 清除所有计划中的关闭
+      show: 列出计划中的关闭操作
+    messages:
+      no-pending: 没有计划中的关闭
+      list-header: 计划中的关闭：
+      list-item:
+        reboot: 重启计划于：{0}
+        poweroff: 关闭计划于：{0}
+      invalid-time: 无法解析时间：{0}
+      clear: 已清除所有计划中的关闭。
+      reboot: 计划于 {0} 重启，使用“shutdown -c”以取消。
+      poweroff: 计划于 {0} 关闭，使用“shutdown -c”以取消。
+      restarted: 机器人已重新启动。
+    wall-messages:
+      clear: 关闭已经取消。
+      reboot: 系统将在 {0} 重启。
+      poweroff: 系统将在 {0} 关闭。
+  exec:
+    description: 执行命令
+    messages:
+      expect-input: 请输入要运行的命令。
+      started: '[运行开始] {command}'
+      finished: |-
+        [运行完毕] {command}
+        {output}
+  usage:
+    description: 调用次数信息
+    options:
+      set: 设置调用次数
+      clear: 清空调用次数
+    messages:
+      present: 今日 {0} 功能的调用次数为：{1}
+      list: 今日各功能的调用次数为：
+      none: 今日没有调用过消耗次数的功能。
+      updated: 设置成功。
+  timer:
+    description: 定时器信息
+    options:
+      set: 设置定时器
+      clear: 清空定时器
+    messages:
+      present: 定时器 {0} 的生效时间为：剩余 <i18n:time value={1}/>
+      absent: 定时器 {0} 当前并未生效。
+      list: 各定时器的生效时间为：
+      item: <p>{0}：剩余 <i18n:time value={1}/></p>
+      none: 当前没有生效的定时器。
+      updated: 设置成功。
+  recall:
+    description: 撤回机器人发送的消息
+    messages:
+      no-recent: 近期没有发送消息。
+  schedule:
+    description: 设置定时命令
+    options:
+      rest: 要执行的指令
+      interval: 设置触发的间隔秒数
+      list: 查看已经设置的日程
+      ensure: 错过时间也确保执行
+      full: 查找全部上下文
+      delete: 删除已经设置的日程
+    messages:
+      context:
+        private: 私聊 {user.id}
+        guild: 频道 {channel.id}
+      delete-success: 日程 {0} 已删除。
+      create-success: 日程已创建，编号为 {0}。
+      list-empty: 当前没有等待执行的日程。
+      command-expected: 请输入要执行的指令。
+      date-invalid: 请输入合法的日期。
+      date-invalid-suggestion: 请输入合法的日期。你要输入的是不是 {0}s？
+      date-expected: 请输入执行时间。
+      date-past: 不能指定过去的时间为执行时间。
+      interval-invalid: 请输入合法的时间间隔。
+      interval-too-short: 时间间隔过短。
+  teach:
+    options:
+      frozen:
+        'true': 锁定这个问答
+        'false': 解锁这个问答
+      writer:
+        ? ''
+        : 添加或设置匿名问题
+      substitute:
+        'true': 由教学者完成问答的执行
+        'false': 由触发者完成问答的执行
+      disable: 在当前环境下禁用问答
+      disableGlobal: 在所有环境下禁用问答
+      enable: 在当前环境下启用问答
+      enableGlobal: 在所有环境下启用问答
+      guilds: 设置具体的生效环境
+      global: 无视上下文搜索
+      search: 搜索已有问答
+      page: 设置搜索结果的页码
+      autoMerge: 自动合并相同的问题和回答
+      recursive: 禁用递归查询
+      pipe: 对每个搜索结果执行操作
+      review: 查看最近的修改
+      revert: 回退最近的修改
+      includeLast: 包含最近的修改数量
+      excludeLast: 排除最近的修改数量
+      target: 查看或修改已有问题
+      remove: 彻底删除问答
+      ignoreHint: 忽略智能提示
+      regexp:
+        'true': 使用正则表达式匹配
+        'false': 取消使用正则表达式匹配
+      redirect: 重定向到其他问答
+      probabilityStrict: 设置问题的触发权重
+      probabilityAppellative: 设置被称呼时问题的触发权重
+      setPred: 设置前置问题
+      addPred: 添加前置问题
+      setSucc: 设置后置问题
+      addSucc: 添加后置问题
+      createSuccessor: 创建并添加后继问答
+      successorTimeout: 设置允许触发后继的时间
+      context:
+        'true': 允许后继问答被任何人触发
+        'false': 后继问答只能被同一人触发
+      startTime: 起始时间
+      endTime: 结束时间
+    messages:
+      writer:
+        target-not-exist: 指定的目标用户不存在。
+        detail:
+          writer: 来源：{0}
+          unknown: 未知用户
+          frozen: 此问答已锁定。
+          substitute: 回答中的指令由教学者代行。
+        abstract:
+          frozen: 锁定
+          substitute: 代行
+      context:
+        modifier-expected: 选项 -g, --guilds 必须与 -d/-D/-e/-E 之一同时使用。
+        private-context: 非群聊上下文中请使用 -E/-D 进行操作或指定 -g, --guilds 选项。
+        enable-all: 生效环境：全局
+        enable-except-some: 生效环境：除 {0} 个群外的所有群
+        enable-except-current-only: 生效环境：除本群
+        enable-except-current-and-more: 生效环境：除本群等 {0} 个群外的所有群
+        disable-all: 生效环境：全局禁止
+        disable-except-some: 生效环境：{0} 个群
+        disable-except-current-only: 生效环境：仅本群
+        disable-except-current-and-more: 生效环境：本群等 {0} 个群
+      options-conflict: 选项 {0} 不能同时使用。
+      too-many-arguments: 存在多余的参数，请检查指令语法或将含有空格或换行的问答置于一对引号内。
+      missing-question-or-answer: 缺少问题或回答，请检查指令语法。
+      prohibited-command: 禁止在教学回答中插值调用 {0} 指令。
+      prohibited-cq-code: 问题必须是纯文本。
+      illegal-regexp: 问题含有错误的或不支持的正则表达式语法。
+      probably-modify-answer: 推测你想修改的是回答而不是问题。发送句号以修改回答，使用 -I 选项以忽略本提示。
+      probably-regexp: 推测你想{0}的问题是正则表达式。发送句号以添加 -x 选项，使用 -I 选项以忽略本提示。
+      upload-failed: 上传资源时发生错误。
+      redirections: 重定向到：
+      create-success: 问答已添加，编号为 {0}。
+      modify-success: 问答 {0} 已成功修改。
+      remove-success: 问答 {0} 已成功删除。
+      revert-success: 问答 {0} 已回退完成。
+      unchanged: 问答 {0} 没有发生改动。
+      create-modified: 修改了已存在的问答，编号为 {0}。
+      create-unchanged: 问答已存在，编号为 {0}，如要修改请尝试使用 {1} 指令。
+      revert-unknown: 最近无人修改过编号为 {0} 的问答。
+      modify-unknown: 没有搜索到编号为 {0} 的问答。
+      permission-denied: 问答 {0} 因权限过低无法{1}。
+      low-permission: 该问答因权限过低无法添加。
+      unknown-error: '{0}问答时遇到错误。'
+      no-history: 没有搜索到满足条件的教学操作。
+      recent-history: 近期执行的教学操作有：
+      max-previews: 一次最多同时预览 {0} 个问答。
+      review: '{0}于：<i18n:time value={1}/>前'
+      detail-header: 问答 {0} 的{1}：
+      detail: '{0}：{1}'
+      entity:
+        question: 问题
+        answer: 回答
+        regexp: 正则
+        detail: 详细信息
+        history: 历史版本
+      operation:
+        create: 添加
+        modify: 修改
+        remove: 删除
+        revert: 回退
+      search:
+        count: 共 {0} 个
+        empty: 没有搜索到任何问答。
+        regexp: 正则
+        regexp-hint: ，请尝试使用正则表达式匹配
+        probability: 实际触发概率：
+        result-all: 全部问答如下{2}：
+        result-answer: 回答“{1}”的问题如下{2}：
+        result-question: 问题“{0}”的回答如下{2}：
+        result-dialogue: “{0}”“{1}”匹配的回答如下{2}：
+        result-regexp-answer: 回答正则表达式“{1}”的搜索结果如下{2}：
+        result-regexp-question: 问题正则表达式“{0}”的搜索结果如下{2}：
+        result-regexp-dialogue: 问答正则表达式“{0}”“{1}”的搜索结果如下{2}：
+        empty-all: 没有搜索到任何回答，尝试切换到其他环境。
+        empty-answer: 没有搜索到回答“{1}”{2}。
+        empty-question: 没有搜索到问题“{0}”{2}。
+        empty-dialogue: 没有搜索到问答“{0}”“{1}”{2}。
+        empty-regexp-answer: 没有搜索到含有正则表达式“{1}”的回答。
+        empty-regexp-question: 没有搜索到含有正则表达式“{0}”的问题。
+        empty-regexp-dialogue: 没有搜索到含有正则表达式“{0}”“{1}”的问答。
+        page-hint: ' (第 {0}/{1} 页)'
+        page-footer: 可以使用 /+页码 以调整输出的条目页数。
+      probability:
+        detail: 触发权重：p={probS}, P={probA}
+        zero-to-one: 应为不超过 1 的正数。
+      flowgraph:
+        not-found: 没有搜索到任何问答。
+        detail:
+          context-mode: 后继问答可以被上下文内任何人触发
+          timeout: 可触发后继时间：<i18n:time value={successorTimeout}/>
+          predecessors: 前置问答：
+          successors: 后继问答：
+        abstract:
+          has-pred: 存在前置
+          context-mode: 上下文后置
+      time:
+        detail: 触发时段：
+        invalid-input: 请输入正确的时间。
+    description: 添加教学对话
+  dialogue:
+    description: 触发教学对话
+    stats:
+      messages:
+        output: 共收录了 {questions} 个问题和 {dialogues} 个回答。
+  broadcast:
+    description: 全服广播
+    options:
+      forced: 无视 silent 标签进行广播
+      only: 仅向当前账号负责的群进行广播
+    messages:
+      expect-text: 请输入要发送的文本。
+  callme:
+    description: 修改自己的称呼
+    messages:
+      current: 好的呢，{0}！
+      unnamed: 你还没有给自己起一个称呼呢~
+      unchanged: 称呼未发生变化。
+      empty: 称呼不能为空。
+      invalid: 称呼中禁止包含纯文本以外的内容。
+      duplicate: 禁止与其他用户重名。
+      updated: 好的，{0}，请多指教！
+      failed: 修改称呼失败。
+  alias:
+    description: 创建别名指令
+    messages:
+      created: 已成功创建别名指令 {0}。
+      updated: 已成功更新别名指令 {0}。
+  unalias:
+    description: 删除别名指令
+    messages:
+      deleted: 已成功删除别名指令 {0}。
+      not-found: 未找到别名指令 {0}。
+  booru:
+    description: 搜索图片
+    options:
+      label: 指定图源标签
+    messages:
+      no-source: 当前未找到可用图源。请从插件市场添加 booru 系图源插件并启用 (插件名通常以 booru- 开头)。
+      no-result: 没有找到符合条件的图片
+      no-image: 获取图片失败
+      output:
+        desc: '{0}'
+        author: '作者: {0}'
+        homepage: '作者主页: {0}'
+        link: '页面地址: {0}'
+        source: '图源: {0}'
+        tags: '标签: {0}'
+      booru:
+        tips:
+          general:
+          - null
+          - null
+          - <b>提示：</b>{0}
+general:
+  $: 通用设置
+  name: 中文
+  paren: （{0}）
+  quote: “{0}”
+  comma: ，
+  and: 和
+  or: 或
+  day: 天
+  hour: 小时
+  minute: 分钟
+  second: 秒
+  days:
+  - 日
+  - 一
+  - 二
+  - 三
+  - 四
+  - 五
+  - 六
+  everyday: 每天 {0}
+  everyweek: 每周{0} {1}
+  interval: 每隔 <i18n:time value={0}/> (剩余 <i18n:time value={1}/>)
+internal:
+  $: 核心文本
+  error-encountered: 发生未知错误。
+  low-authority: 权限不足。
+  prompt-argument: 请发送{0}。
+  insufficient-arguments: 缺少参数，输入帮助以查看用法。
+  redunant-arguments: 存在多余参数，输入帮助以查看用法。
+  invalid-argument: 参数 {0} 输入无效，{1}
+  unknown-option: 存在未知选项 {0}，输入帮助以查看用法。
+  invalid-option: 选项 {0} 输入无效，{1}
+  check-syntax: 输入帮助以查看用法。
+  invalid-number: 请提供一个数字。
+  invalid-integer: 请提供一个整数。
+  invalid-posint: 请提供一个正整数。
+  invalid-natural: 请提供一个非负整数。
+  invalid-date: 请输入合法的时间。
+  invalid-user: 请指定正确的用户。
+  invalid-channel: 请指定正确的频道。
+  invalid-image: 请输入图片。
+  suggest-hint: 您要找的是不是{0}？
+  suggest-command: 回复句号以使用推测的指令。
+  usage-exhausted: 调用次数已达上限。
+  too-frequent: 调用过于频繁，请稍后再试。
+  option-not-usage: ' (不计入调用)'
+  command-max-usage: 已调用次数：{0}/{1}。
+  command-min-interval: 距离下次调用还需：{0}/{1} 秒。
+admin:
+  user-option: 指定目标用户
+  user-not-found: 未找到指定的用户。
+  user-unchanged: 用户数据未改动。
+  user-updated: 用户数据已修改。
+  channel-option: 指定目标频道
+  channel-not-found: 未找到指定的频道。
+  channel-unchanged: 频道数据未改动。
+  channel-updated: 频道数据已修改。
+  not-in-group: 当前不在群组上下文中，请使用 -c 参数指定目标频道。
+  user-expected: 请指定目标用户。
+  channel-expected: 请指定目标频道。
+  invalid-assignee-platform: 受理人应与目标频道属于同一平台。
+  current-locale: 当前语言偏好为：{0}。
+  no-locale: 未设置语言偏好。
+  options:
+    remove: 重置设置
+lobby:
+  exception:
+    busy-1: 你已在房间 {id} 中。输入「room leave」以离开当前房间。
+    busy-2: 你当前正在同步推送房间 {id} 的消息。输入「room leave」以离开当前房间。
+    not-in-room: 你并不在任何房间中。
+    room-not-found: 房间 {0} 不存在。
+    player-not-found: 房间中没有编号为 {0} 的玩家。
+    expect-host: 只有房主可以进行此操作。
+    target-host: 不能对房主进行此操作。
+    game-not-found: 当前房间没有设置游戏内容。
+  system:
+    join: 系统消息：{0} 加入了房间。
+    leave: 系统消息：{0} 离开了房间。
+    leave-transfer: 系统消息：{1} 离开了房间，并将房主转移给了 {0}。
+    transfer: 系统消息：{1} 将房主转移给了 {0}。
+    kick: 系统消息：{0} 被房主踢出了房间。
+    kick-self: 系统消息：你被房主踢出了房间。
+    destroy: 系统消息：房间已解散。
+    start: 系统消息：游戏开始。
+    game: 系统消息：房间已设置游戏为 {0}。
+    pause: 输入任意内容以继续。
+    pause-response: 等待其他玩家进行确认……
+    ready: 待所有玩家确认后游戏将正式开始。
+    confirm: 输入「Y」以确认，输入「N」以取消。
+    cancel: 系统消息：由于有玩家未确认，游戏已自动取消。
+    terminated: 系统消息：游戏因为异常而中止。
+  speech:
+    player: '{0}：'
+  game:
+    mahjong:
+      invalid-player-count: 游戏人数必须为 4 人。
+    rps:
+      invalid-player-count: 游戏人数必须为 2 人。
+      input: |-
+        第 {0} 轮
+        请输入字母进行选择：
+        [R] 石头
+        [P] 布
+        [S] 剪刀
+      choice:
+        r: 石头
+        p: 布
+        s: 剪刀
+      accepted: 你选择了{0}，请等待对方出招。
+      output: '{0} 出了{1}'
+      timeout: '{0} 没有在规定时间内出招'
+      result-0: |-
+        {0}，{1}，此轮没有分出胜负。
+        <p>{2}</p>
+      result-1: |-
+        {0}，{1}，{2} 获胜！
+        <p>{3}</p>
+      score: 当前比分为：{0}：{1} 分；{2}：{3} 分。
+      finish: 游戏结束，{0} 获胜！
+protocol: 要使用的协议名。
+host: 要连接到的主机名。
+port: 要连接到的端口号。
+username: 要使用的用户名。
+password: 要使用的密码。
+database: 要访问的数据库名。
+writeConcern:
+  $description: Write Concern
+  w:
+    $description: The write concern.
+    $value:
+    - Default
+    - Custom
+    - Majority
+  wtimeoutMS: The write concern timeout.
+  journal: The journal write concern.
+user: 要使用的用户名。
+ssl:
+  $description: SSL 高级选项。
+  $value:
+  - 默认值
+  - $description: 自定义
+    rejectUnauthorized: 拒绝使用无效证书的客户端。
+path: 数据库路径。
+base: 用户显示路径的根目录，默认为当前工作路径。
+root: 要监听的文件或目录列表，相对于 `base` 路径。
+ignored: 要忽略的文件或目录。支持 [Glob Patterns](https://github.com/micromatch/micromatch) 语法。
+debounce: 延迟触发更新的等待时间。
+booru:
+  booru:
+    tips:
+      general:
+      - null
+      - null
+      - general:
+        - 不带参数调用此命令将会随机返回一张图片
+        - 可以使用 <code>-l &lt;label&gt;</code> 或 <code>--label &lt;label&gt;</code>
+          参数指定图源标签
+  tips:
+    general:
+    - null
+    - null
+    - 可以使用 <code>-c &lt;count&gt;</code> 或 <code>--count &lt;count&gt;</code> 参数指定返回图片数量
+    - 使用 <code>{0} -c 3</code> 可以返回 3 张图片
+    - 指定的图片数量与实际返回的图片数量可能有所不同

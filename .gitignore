@@ -1,0 +1,39 @@
+# Git directory
+.git/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.env
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Compiled Python files
+*.pyc
+
+# Logs
+*.log
+
+# Output files
+output/
+
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+/test
+
+# Backup files
+*~
+*.bak
+
+# Translation cache
+translation_cache.json
