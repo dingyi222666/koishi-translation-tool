@@ -65922,21 +65922,21 @@ export default Schema.object({
           <context context-type="source">commands -&gt; booru -&gt; messages -&gt; output -&gt; tags</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="65692" resname="commands.booru.messages.booru.tips.general.2">
+      <trans-unit id="65692" resname="commands.booru.messages.tips">
         <source>&lt;b&gt;提示：&lt;/b&gt;{0}</source>
         <target state="needs-translation">&lt;b&gt;提示：&lt;/b&gt;{0}</target>
         <context-group purpose="information">
           <context context-type="source">commands -&gt; booru -&gt; messages -&gt; booru.tips.general.2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="65694" resname="booru.booru.tips.general.2.general.0">
+      <trans-unit id="65694" resname="booru.tips.general.0">
         <source>不带参数调用此命令将会随机返回一张图片</source>
         <target state="needs-translation">不带参数调用此命令将会随机返回一张图片</target>
         <context-group purpose="information">
           <context context-type="source">booru -&gt; booru.tips.general.2 -&gt; general -&gt; 0</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="65696" resname="booru.booru.tips.general.2.general.1">
+      <trans-unit id="65696" resname="booru.tips.general.1">
         <source>可以使用 &lt;code&gt;-l &amp;lt;label&amp;gt;&lt;/code&gt; 或 &lt;code&gt;--label &amp;lt;label&amp;gt;&lt;/code&gt; 参数指定图源标签</source>
         <target state="needs-translation">可以使用 &lt;code&gt;-l &amp;lt;label&amp;gt;&lt;/code&gt; 或 &lt;code&gt;--label &amp;lt;label&amp;gt;&lt;/code&gt; 参数指定图源标签</target>
         <context-group purpose="information">

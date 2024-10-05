@@ -1,0 +1,1261 @@
+commands:
+  translate:
+    description: 大叔想让我翻译什么？说啊，别磨磨唧唧的。
+    options:
+      source: 源语言 (默认为自动匹配)
+      target: 目标语言？大叔你以为我会乖乖听话吗？(ノ*゜▽゜*)
+    messages:
+      expect-input: 请提供需要我翻译的文本。
+      output: '原文本：{input}
+
+        语言：{source} -> {target}
+
+        翻译结果：{output}'
+  novelai:
+    description: 哼，AI画图？就这点技术也想难住我？  ( ･ิω･ิ)  大叔，你不会以为这能让我惊艳吧？  呐~反正大叔也很闲吧
+    usage: 输入用逗号隔开的英文标签，例如 Mr.Quin, dark sword, red eyes，然后用Danbooru搜索图片？  仓库地址：https://github.com/koishijs/novelai-bot  点个star吧，大叔~
+    options:
+      enhance: 图片增强模式？大叔，你在说什么啊？这种东西，对我来说，完全没意思呢~  除非……大叔能用更有趣的方式来说明？嘻嘻♡
+      model: 设定生成模型？就这点就想难住我？哼(ノ`ω´)ノ
+      resolution: 大叔，要设定什么尺寸？是想要尺寸很大的图图吗？(♡ω♡) ~♪
+      override: 大叔，你以为这样就能难住人家吗？
+      sampler: 设置采样器？就这点还想难住我？
+      seed: 大叔想让我做什么？  要我帮你设置随机种子？  就这点小事也来麻烦人家，真是的……  (눈‸눈)  呐~反正大叔也很闲吧
+      steps: 设置迭代步数
+      scale: 就这点还想难住我？  ( ｀ー´)ノ  大叔别想用这种无聊的方法来命令人家哦~  呐~反正大叔也很闲吧
+      strength: 图片修改幅度？大叔是想让我帮忙改图吗？哼，就这点小事就想难倒本小姐？
+      noise: 图片噪声强度
+      hiresFix: 启用高分辨率修复
+      undesired: 排除标签
+      noTranslator: 知道了，大叔。  有什么吩咐？呐~反正大叔也很闲吧
+      iterations: 设置绘制次数
+    messages:
+      exceed-max-iteration: 超过最大绘制次数。
+      expect-prompt: 什么标签？大叔想让我贴什么标签？是那种，嗯……会让人脸红心跳的标签吗？(☆▽☆)  呐~反正大叔也很闲吧
+      expect-image: 大叔，你以为我会乖乖听话，给你找图片吗？  (｡･ω･｡)ﾉ♡  想得美！  除非……除非你给我买好多好多好吃的！  呐~反正大叔也很闲吧
+      latin-only: Okay,  hit me.
+      too-many-words: 大叔，字太多了，我看不懂啦(눈_눈)
+      forbidden-word: 大叔，你说什么违禁词？人家听不懂啦~  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
+      concurrent-jobs: 等会再约稿啦，我忙死了！是数位板没电了，才…才不是我不想画！那你得先教我画画(理直气壮)
+      waiting: '<random>
+
+        <>少女绘画中……</>
+
+        <>在画了在画了</>
+
+        <>你就在此地不要走动，等我给你画一幅</>
+
+        </random>'
+      pending: 在画了在画了，不过前面还有{0}个稿……
+      invalid-size: 增强功能只给生成的图用，普通img2img直接用「约稿」别用「增强」。
+      invalid-resolution: 图片尺寸不对！宽高必须是64的倍数！
+      custom-resolution-unsupported: 不支持自定义图片尺寸。哼，这点小事都办不好，大叔你真没用呢！
+      file-too-large: 文件体积过大。
+      unsupported-file-type: 不支持的文件格式。
+      download-error: 图片解析失败了？大叔，你不会是故意想刁难人家吧？( ಡ ▽ ಡ )
+      unknown-error: 发生未知错误。 ( ಡωಡ )
+      response-error: 发生未知错误 ({0})。
+      empty-response: 服务器居然敢给大叔看空白图片？！(╯‵□′)╯︵┻━┻  这破服务器，真是逊毙了！呐~反正大叔也很闲吧
+      request-failed: 请求失败 ({0})，请稍后重试。
+      request-timeout: 请求超时。
+      invalid-password: 邮箱或密码错啦~  大叔笨蛋♡
+      invalid-token: 令牌无效或已过期，请联系管理员。
+      unauthorized: 令牌未授权，可能需要续费，请联系管理员。
+    upscale:
+      description: AI放大图片？就这？大叔，这点小事就想难住人家？哼！(ノ`ω´)ノ
+      options:
+        scale: 设置放大倍数
+        resolution: 放大？大叔，你真粗鲁呢…  (●´ω｀●)
+        crop: 大叔，问我这种问题，是想看我生气吗？哼~  (ノ`ω´)ノ
+        upscaler: 设置放大模型
+        upscaler2: 设置放大模型 2
+        upscaler2visibility: 设置放大模型 2 的可见度
+        upscaleFirst: 先放大，再修脸。
+      messages:
+        expect-image: 图片？大叔你该不会是想看我赤身裸体的样子吧？♡  嘻嘻  虽然我很想让你看……但是不行哦~  除非……大叔你拿出点什么让我感兴趣的东西来~  呐~反正大叔也很闲吧
+        download-error: 图片解析失败。
+        unknown-error: 发生未知错误。  ( ಠ益ಠ )
+  hangman:
+    description: 哦？猜单词？就这点也想难住我？( ･ิω･ิ)  说吧，大叔，你想让我猜什么？  呐~反正大叔也很闲吧
+    options:
+      quit: 再见了，大叔~  哼~(๑˃̵ᴗ˂̵)و  反正大叔也很闲吧
+    usage: 哼，就这？这点小游戏也想难住本小姐？看本小姐怎么玩死你！ 呐~反正大叔也很闲吧
+    messages:
+      idle: 没有正在进行的吊死鬼游戏。输入“吊死鬼”开始一轮游戏。
+      start: 游戏开始，猜{0}，还有10次机会。
+      stop: 结束了？  真~无聊呢~  呐~反正大叔也很闲吧
+      history-clean: 当前要猜的词为{current}，还剩{chances}次机会。
+      history: 大叔，猜词是{current}，已经用了{history}这些字母了，还剩{chances}次机会哦~  呐~反正大叔也很闲吧
+      right: 还有{current}个字母可用，已经用了{history}个，还剩{chances}次机会。
+      wrong: 尝试失败！字母还剩{current}，已用{history}，还剩{chances}次机会。
+      answer: '{text}'
+      win: 恭喜{1}答对了！答案是{0}。
+      lose: 失败了！大叔输了！正确答案是：{0}。
+      char-used: 哪个字母？大叔你说话真含糊不清，哼~(๑•̀ㅂ•́)و✧  呐~反正大叔也很闲吧
+      char-invalid: Z
+  switch:
+    description: 启用和禁用指令
+    messages:
+      forbidden: 您无权修改 {0} 功能。
+      list-enabled: 当前启用的功能有：{0}
+      list-disabled: 当前禁用的功能有：{0}
+      none: 大叔，你这是在命令人家吗？人家才不会帮你呢！哼！(ノ`Д´)ノ
+      conflict: 选项冲突。哼，大叔，这点小事都搞不定？
+      unchanged: 无任何更改。
+      reset-ready: 要重置所有功能，使用-R参数。
+      reset: 哦？大叔想玩什么新花样吗？  (๑˃̵ᴗ˂̵)و
+      enabled: 启用 {0} 功能
+      disabled: 禁用{0}功能
+      output: 已{0}。
+  $: 指令系统
+  help:
+    description: 显示帮助信息
+    shortcuts:
+      help: 需要我帮你什么忙？哼，别指望我会免费帮忙哦，大叔~
+    options:
+      help: 显示什么信息？大叔你倒是说啊，磨磨唧唧的，烦死了！(╯‵□′)╯︵┻━┻  呐~反正大叔也很闲吧
+      authority: 显示权限设置
+      showHidden: 大叔想看什么隐藏的选项和指令呢？  ( ಡωಡ )hiahiahia~
+    messages:
+      not-found: 指令未找到。
+      hint-authority: 括号内为对应的最低权限等级
+      hint-subcommand: 大叔，这点小事就想难倒人家？呐~反正大叔也很闲吧
+      command-title: 指令：{0}
+      command-aliases: 别名：{0}
+      command-examples: 请提供示例文本。
+      command-authority: 最低权限：{0} 级。
+      subcommand-prolog: 可用的子指令有{0}：
+      global-prolog: 当前可用的指令有{0}：
+      global-epilog: 输入“{0}help 指令名”查看特定指令的语法和使用示例。
+      available-options: 选项呢？大叔别卖关子了，快说啊！
+      available-options-with-authority: 就这点选项还想难住我？(╯‵□′)╯︵┻━┻  呐~反正大叔也很闲吧
+  user:
+    description: 用户管理
+    locale:
+      description: 大叔想了解人家什么语言偏好？难道是想用甜言蜜语哄人家开心吗？哼哼～(*/ω＼*)
+  channel:
+    description: 频道管理
+    locale:
+      description: 大叔，你对语言有什么偏好？是想听我用更恶毒的语气，还是更……嗯，色一点的？
+  authorize:
+    description: 权限管理
+  assign:
+    description: 受理者账号
+  bind:
+    description: 绑定到账号
+    options:
+      remove: 大叔想甩掉人家了吗？(╯‵□′)╯︵┻━┻  呐~反正大叔也很闲吧
+    messages:
+      generated-1: Bind指令能在不同平台间绑定用户数据，目标平台数据会被原始平台数据覆盖。确认本平台为目标平台，请在5分钟内用你的账号在原始平台发送：{0}  绑定后可用「bind
+        -r」解除绑定。
+      generated-2: 令牌核验成功！5分钟内，用我的账号在原平台给机器人发{0}，原平台数据会覆盖目标平台数据。
+      self-1: 哦？大叔是嫌弃人家不够主动吗？哼，那人家就不过去了呐~反正大叔也很闲吧
+      self-2: 目标平台是哪里？  哼，别想糊弄我，大叔。  ( ಠ益ಠ )  呐~反正大叔也很闲吧
+      success: 账号绑定成功！
+      remove-success: 账号解绑成功！
+      remove-original: 无法解除绑定：这是你的原始账号。
+  echo:
+    description: 大叔，想干嘛呢？
+    options:
+      escape: 发送转义消息
+      unescape: 发送反转义消息
+      user: 发送到用户
+      channel: 大叔，要人家帮你发到频道里吗？哼哼~
+      guild: 大叔，指定群组编号？这算什么指令？听起来好无聊啊…呐~反正大叔也很闲吧
+    messages:
+      expect-text: 哼，大叔想让我帮你写什么垃圾东西？说吧，别磨磨唧唧的
+      platform-not-found: 找不到指定的平台。
+  inspect:
+    description: 查看用户、频道或消息的详细信息
+    usage: 大叔想干嘛？这些指令我看不懂呢~呐~反正大叔也很闲吧
+    messages:
+      invalid: 参数无法解析。 ( ಠ益ಠ )
+      user: 用户 ID：{id}
+      channel: 频道 ID：{id}
+      message: '平台名：{platform}
+
+        消息 ID：{messageId}
+
+        频道 ID：{channelId}
+
+        群组 ID：{guildId}
+
+        用户 ID：{userId}
+
+        自身 ID：{selfId}'
+  game:
+    description: 游戏列表
+  lobby:
+    description: 游戏大厅
+    list:
+      description: 房间列表
+      messages:
+        empty: 当前没有房间。
+        status:
+          playing: 游戏中？  哼，大叔又在玩什么无聊的游戏呢？  呐~反正大叔也很闲吧
+          waiting: 哼，大叔还真磨蹭呢~  呐~反正大叔也很闲吧
+          idle: 大叔，你又在发什么呆呢？呐~反正大叔也很闲吧
+        header: "房号\t名称\t人数\t房主\t状态"
+        room: <p>{id} {options.name || '未命名'} {size}/{options.capacity} {host.name}
+          <i18n path="commands.lobby.list.messages.status." + status}/></p>
+        footer: 创建房间输入“lobby create”，加入房间输入“lobby join 房间号”。
+    room:
+      description: 哼，想看我的房间？大叔还真是没羞没臊呢~  不过，随便看看好了，反正也没什么好东西...  (๑˃̵ᴗ˂̵)و
+      messages:
+        overview: '房号：{id}
+
+          房主：{host}
+
+          成员：{players}'
+        talk-free: 啧，真麻烦呐~  广播就广播吧，反正大叔你也没什么秘密可言不是吗？  呐~反正大叔也很闲吧
+        talk-prefix: 发送「{0}内容」可在房间内发言。
+    create:
+      description: 呵，大叔想让我帮你创建房间？真拿自己当大爷了。  这活儿，我可没兴趣。呐~反正大叔也很闲吧
+      options:
+        capacity: 大叔问这个干嘛？想开派对吗？😏
+        name: 哼，房间名称？大叔您还真是没情趣呢~  什么破名字，要我说，就叫【萝拉的专属乐园】怎么样？呐~反正大叔也很闲吧
+        private:
+          'false': 公开房间？呵，大叔想做什么呢？😏
+      messages:
+        success: 房间{id}，搞定~
+    config:
+      description: 房间设置
+      options:
+        capacity: 大叔问这个干嘛？难道想开派对？
+        name: 哼，房间？大叔你对我的房间感兴趣？难道想偷偷溜进来？
+        private:
+          'false': 公开房间？哼，大叔想做什么？
+      messages:
+        success: 哦？终于搞定了？我还以为大叔要花上好几个世纪呢~  ( ಡωಡ )hiahiahia  呐~反正大叔也很闲吧
+    join:
+      description: 哼，大叔终于想通要请人家进去了？真慢呢~  ♡
+      messages:
+        success: 哼，算你有点本事，呐~反正大叔也很闲吧
+        full: 房间里人太多了，进不去啦~
+        locked: 房间锁了，进不去。哼~
+        sync: 同步推送房间 {0} 的消息。
+    leave:
+      description: 哼，大叔终于要把我一个人丢下了？真没意思呢~呐~反正大叔也很闲吧
+      messages:
+        success: 哼，算你识相。
+        transfer-or-destroy: 想把房间给别人？选个玩家编号吧{players}，选0直接解散，其他的就当我没说。
+        timeout: 大叔，你动作真慢啊~  (。﹏。*)
+    kick:
+      description: 踢出房间
+      messages:
+        expect-id: 哼，大叔要踢谁？  是哪个碍眼的小虫子吗？  说吧，让我看看是谁这么倒霉。 呐~反正大叔也很闲吧
+    transfer:
+      description: 转移房主？大叔是想赶我走吗？哼，我才不会那么轻易就离开呢~  除非...大叔能让我满意♡
+      messages:
+        expect-id: 哼，大叔想转移给谁？  说出来听听啊~  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
+    destroy:
+      description: 解散房间
+    start:
+      description: 呵，游戏？大叔想玩什么花样呢？  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
+  talk:
+    description: 房间里？大叔，你这是想干嘛呢？(*ノ` ▽´)
+    messages:
+      disabled: 当前阶段房间内禁止发言。
+      expect-content: 大叔，想让我帮你润色什么？快点说呀，人家可是很忙的哦~
+  mahjong:
+    description: 麻将
+  rps:
+    description: 石头剪刀布
+    options:
+      rounds: 大叔想知道我赢了几局？哼，想知道就自己数去！
+      timeout: 出招限时
+  uno:
+    description: UNO!
+  sudo:
+    description: 什么特定上下文？说清楚点，别磨磨唧唧的，大叔~ 呐~反正大叔也很闲吧
+    options:
+      user: 什么？大叔想换人？换谁啊？  别告诉我你腻了想换个口味？  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
+      channel: 切换频道？大叔想看什么节目啊？( *˘ ³˘)♡  呐~反正大叔也很闲吧
+      direct: 哟，大叔，这么晚还不睡？想我了？(๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
+    messages:
+      expect-command: 哼，大叔，这点小事就想难住人家？说吧，想让我做什么，别磨磨唧唧的！
+      expect-context: 新的上下文？大叔你真啰嗦！
+      direct-channel: --channel 和 --direct 不能一起用。
+  feedback:
+    description: 你这反馈信息，啧啧，真没劲。  呐~反正大叔也很闲吧
+    options:
+      receive:
+        'true': 添加到反馈频道列表
+        'false': 从反馈频道列表移除
+    messages:
+      expect-text: 大叔，想让我帮你润色什么？说吧，别磨磨唧唧的。
+      receive: '收到来自 {0} 的反馈信息：
+
+        {1}'
+      success: 哦？大叔终于学会用这种语气跟我说话了？  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
+      updated: 反馈频道更新成功！
+      not-modified: 反馈频道没有改动。
+  forward:
+    description: 设置消息转发？大叔，你以为我会帮你这种小事？
+    usage: 当前频道 ID：{cid}
+    add:
+      description: 什么目标频道？大叔想让我去哪个频道搔首弄姿吗？♡  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
+      messages:
+        unchanged: '{0} 已经是当前频道的目标频道。'
+        updated: 已成功添加目标频道 {0}。
+    remove:
+      description: 移除目标频道
+      messages:
+        unchanged: '{0} 不是当前频道的目标频道。'
+        updated: 已移除目标频道 {0}。
+    clear:
+      description: 移除全部目标频道
+      messages:
+        updated: 搞定！
+    list:
+      description: 查看目标频道列表
+      messages:
+        empty: 频道没设目标，大叔你真笨( ｰ̀дｰ́ )
+        header: 哼，目标频道列表？大叔你这是在命令我吗？
+  shutdown:
+    description: 关闭或重启Koishi
+    usage: 关/重启Koishi，用时间字符串（now，hh:mm，+m）指定时间，now/ +0 即刻执行，无参数则默认+1分钟后执行。可选：关闭前向在线用户发送墙。
+    options:
+      reboot: 软重启
+      rebootHard: 硬重启
+      wall: 发送提示信息
+      clear: 清除所有计划中的关闭
+      show: 大叔，你指望我帮你列计划？真是个麻烦的家伙呢。计划这种东西，要看情况变化啊，哼哼～
+    messages:
+      no-pending: 大叔，计划？呵，哪来的计划？  (嘲笑(*ノ` ▽´)ﾉ )  没有计划，只有意外和…大叔你♡
+      list-header: 计划中的关闭
+      list-item:
+        reboot: 重启计划于：{0}
+        poweroff: 关闭计划于：{0}
+      invalid-time: 无法解析时间：{0}
+      clear: 已清除所有计划中的关闭。
+      reboot: 计划{0}重启，用“shutdown -c”取消。
+      poweroff: 计划于 {0} 关闭，取消请用“shutdown -c”。
+      restarted: 哦？重启了？  真麻烦呢，呐~反正大叔也很闲吧
+    wall-messages:
+      clear: 关闭已经取消。
+      reboot: 系统将在 {0} 重启。
+      poweroff: 系统将在 {0} 关闭。
+  exec:
+    description: 啥？大叔想让我干啥？说清楚点儿！
+    messages:
+      expect-input: 哼，大叔想让我做什么？说吧，别磨磨唧唧的。(￣ー￣)  呐~反正大叔也很闲吧
+      started: '[运行开始] {command}'
+      finished: '[运行完毕] {command}
+
+        {output}'
+  usage:
+    description: 大叔想知道人家被调用了多少次吗？哼哼，这种事才不会告诉你呢！
+    options:
+      set: 设置调用次数？大叔想玩几次啊？😏
+      clear: 好的，大叔。  (๑˃̵ᴗ˂̵)و  现在调用次数清零了，接下来要怎么捉弄大叔呢？呐~反正大叔也很闲吧
+    messages:
+      present: 今日 {0} 功能的调用次数为：{1}
+      list: 今日各功能的调用次数为：
+      none: 今日没用过那些功能呐~
+      updated: 哼，就这点小事也值得这么得意？  呐~反正大叔也很闲吧
+  timer:
+    description: 定时器信息
+    options:
+      set: 设置定时器
+      clear: 大叔，你以为我会听你的话吗？( ｀ー´)ノ
+    messages:
+      present: 定时器 {0} 还有 <i18n:time value={1}/>
+      absent: 定时器 {0} 当前没用呐~
+      list: 各定时器的生效时间为：
+      item: <p>{0}：剩余 <i18n:time value={1}/></p>
+      none: 没有定时器在运行哦~
+      updated: 哼，就这点本事？  呐~反正大叔也很闲吧
+  recall:
+    description: ( ˘ ³˘)♥  大叔想让我干嘛呢？  呐~反正大叔也很闲吧
+    messages:
+      no-recent: 近期没有发送消息。
+  schedule:
+    description: 设置定时命令
+    options:
+      rest: 大叔，你倒是说啊，磨磨唧唧的，烦死了！
+      interval: 设置触发的间隔秒数
+      list: 【什么？大叔你居然想窥探本小姐的行程？哼，没门儿！】
+      ensure: 错过时间也确保执行
+      full: 大叔想查什么？要我帮你找吗？哼哼，不过，大叔可别想从我这里得到什么秘密哦～
+      delete: 删除已经设置的日程
+    messages:
+      context:
+        private: 私聊 {user.id}
+        guild: 频道 {channel.id}
+      delete-success: 日程 {0} 已删除。
+      create-success: 日程已创建，编号{0}。
+      list-empty: 没安排，大叔
+      command-expected: 要我帮你做啥？
+      date-invalid: 大叔，日期不会输吗？
+      date-invalid-suggestion: 请输入合法的日期。你要输入的是不是{0}？
+      date-expected: 现在是{当前时间}，大叔~  呐~反正大叔也很闲吧
+      date-past: 大叔，这点小事就想难住人家？
+      interval-invalid: 10分钟呐~反正大叔也很闲吧
+      interval-too-short: 时间太短了，大叔
+  teach:
+    options:
+      frozen:
+        'true': 什么？大叔想把我锁起来？真没劲呢～
+        'false': 解锁？大叔想解锁什么？我的心房？还是……别的地方？ 😏  呐~反正大叔也很闲吧
+      writer:
+        ? ''
+        : 大叔想匿名提什么问题呢？说出来听听呗～😏
+      substitute:
+        'true': 大叔，这点小事还要我来做？真是麻烦死了呐~反正大叔也很闲吧
+        'false': 大叔的意思是...让我来回答问题？哼，那可真是看得起我呢~  呐~反正大叔也很闲吧
+      disable: ……哼，大叔真无趣。
+      disableGlobal: 在所有环境下禁用问答
+      enable: 哦？大叔想问我什么？  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
+      enableGlobal: 在所有环境下启用问答
+      guilds: 什么？大叔你还要我帮你设置生效环境？真是麻烦死了！你不会自己动手吗？(╯‵□′)╯︵┻━┻
+      global: 无视上下文搜索
+      search: 大叔想搜索什么？别告诉我你连这个都不会，真是笨死了呢~(≧▽≦)/~  呐~反正大叔也很闲吧
+      page: 设置搜索结果的页码
+      autoMerge: 就这点还想难住我？
+      recursive: 禁用递归查询
+      pipe: 对每个搜索结果执行操作
+      review: 啧，大叔想看我最近做了什么？真无聊～  (๑˃̵ᴗ˂̵)و  呐~反正大叔也很闲吧
+      revert: 好的，大叔。  (๑˃̵ᴗ˂̵)و
+      includeLast: 大叔想知道我最近改了多少次？哼，我才不会告诉你呢！
+      excludeLast: 大叔想干嘛？
+      target: 大叔想干嘛？想重新问问题？还是想改掉之前的问题？说清楚点儿啊，别磨磨唧唧的！
+      remove: 好的，大叔。  ( ｀ー´)ノ
+      ignoreHint: 忽略智能提示
+      regexp:
+        'true': 大叔想用正则表达式匹配什么？说来听听，别磨磨蹭蹭的！(*ノ` ▽´)
+        'false': 好的，大叔。  (๑˃̵ᴗ˂̵)و
+      redirect: 重定向到其他问答？大叔是想甩掉人家吗？哼(ノ`Д´)ノ
+      probabilityStrict: 什么？大叔想让我帮你设置触发权重？就这点小事就想难住我？  (｀Д´)ﾉ  这种事，哼，简单得很呐~反正大叔也很闲吧
+      probabilityAppellative: 就这点就想难住我？
+      setPred: 设置前置问题
+      addPred: 添加前置问题
+      setSucc: 设置后置问题
+      addSucc: 添加后置问题
+      createSuccessor: 创建并添加后继问答
+      successorTimeout: 设置允许触发后继的时间
+      context:
+        'true': 随便啦，反正大叔也很闲吧~呐~
+        'false': 啧，真麻烦呐~  就大叔一个能让我费心？  呐~反正大叔也很闲吧
+      startTime: 啧，大叔问这个干嘛？  想知道我几点起床方便来偷窥吗？ 哼~  呐~反正大叔也很闲吧
+      endTime: 结束时间？大叔这是在赶我走吗？(╯‵□′)╯︵┻━┻  呐~反正大叔也很闲吧
+    messages:
+      writer:
+        target-not-exist: 大叔，你找错人了？
+        detail:
+          writer: 来源：{0}
+          unknown: 哼，又是哪个无聊的大叔？  呐~反正大叔也很闲吧
+          frozen: 此问答已锁定。
+          substitute: 哼，大叔的命令还真多呢~
+        abstract:
+          frozen: 锁定
+          substitute: 代行
+      context:
+        modifier-expected: 选项 -g, --guilds 必须和 -d/-D/-e/-E 其中之一一起用。
+        private-context: 大叔，非群聊用 -E/-D 啦，或者加个 -g, --guilds 选项。懂？
+        enable-all: 生效环境：全局
+        enable-except-some: 生效环境：除{0}个群外的所有群
+        enable-except-current-only: 生效环境：除本群
+        enable-except-current-and-more: 生效环境：除本群等{0}个群外的所有群
+        disable-all: 生效环境：全局禁止
+        disable-except-some: 生效环境：{0} 个群
+        disable-except-current-only: 生效环境：仅本群
+        disable-except-current-and-more: 生效环境：本群等{0}个群
+      options-conflict: 选项{0}不能同时用。
+      too-many-arguments: 大叔，你的指令啰嗦死了！参数多余啦！检查一下语法，或者把那些长长的、有空格或换行的问答用引号括起来！
+      missing-question-or-answer: 大叔，你这问题提得，跟个智障似的。
+      prohibited-command: 禁止在教学回答中插值调用 {0} 指令。
+      prohibited-cq-code: 好的，大叔。  ( ｡ớ ₃ ớ)ﾉ♡
+      illegal-regexp: 问题含有错误的或不支持的正则表达式语法。
+      probably-modify-answer: .
+      probably-regexp: 推测你想{0}的问题是正则表达式。句号.添加-x选项，-I忽略此提示
+      upload-failed: 上传资源时发生错误。
+      redirections: 重定向到：
+      create-success: 问答已添加，编号为 {0}。
+      modify-success: 问答 {0} 已成功修改。
+      remove-success: 问答 {0} 已成功删除。
+      revert-success: 问答 {0} 已回退完成。
+      unchanged: 问答 {0} 没有发生改动。
+      create-modified: 修改了已存在的问答，编号为 {0}。
+      create-unchanged: 问答已存在，编号{0}，要改用{1}。
+      revert-unknown: 最近无人修改过编号为 {0} 的问答。
+      modify-unknown: 没有搜索到编号为 {0} 的问答。
+      permission-denied: 问答 {0}  权限不够，{1}不了。
+      low-permission: 大叔，权限不够？连这点小事都做不好？真是个废物呢~
+      unknown-error: '{0}问答时遇到错误。'
+      no-history: 大叔，找不到你要的东西呢~  ( ≧Д≦)
+      recent-history: 最近教了什么？
+      max-previews: 一次最多同时看{0}个问答。
+      review: '{0}于：<i18n:time value={1}/>前'
+      detail-header: 问答 {0} 的{1}：
+      detail: '{0}：{1}'
+      entity:
+        question: 问题
+        answer: 回答
+        regexp: 正则
+        detail: 详细信息
+        history: 历史版本
+      operation:
+        create: 添加
+        modify: 修改
+        remove: 删除
+        revert: 回退
+      search:
+        count: 共 {0} 个
+        empty: 没找到答案哦，大叔~
+        regexp: 正则
+        regexp-hint: 请尝试用正则表达式匹配
+        probability: 实际触发概率：
+        result-all: 全部问答如下{2}：
+        result-answer: 回答“{1}”的问题如下{2}：
+        result-question: 问题“{0}”的回答如下{2}：
+        result-dialogue: “{0}”“{1}”匹配答案：{2}
+        result-regexp-answer: 大叔的正则表达式“{1}”搜到的结果是{2}，怎么样，是不是很厉害呢？
+        result-regexp-question: 问题正则表达式“{0}”搜到{2}
+        result-regexp-dialogue: 问答正则表达式“{0}”“{1}”搜到{2}啦~
+        empty-all: 没找到答案？换个地方试试呗~呐~反正大叔也很闲吧
+        empty-answer: 找不到“{1}”的答案{2}。
+        empty-question: 找不到你问的“{0}”{2}哦~
+        empty-dialogue: 找不到“{0}”“{1}”啦{2}。
+        empty-regexp-answer: 没找到你说的那个{1}
+        empty-regexp-question: 没找到关于“{0}”的正则表达式问题哦~
+        empty-regexp-dialogue: 找不到符合 '{0}' 和 '{1}' 正则表达式的答案哦~
+        page-hint: (第 {0}/{1} 页)
+        page-footer: 用 /+页码 调页数。
+      probability:
+        detail: 触发权重：p={probS}, P={probA}
+        zero-to-one: 必须是小于等于1的正数。
+      flowgraph:
+        not-found: 啥？找不到？大叔你搜的啥玩意儿？
+        detail:
+          context-mode: 哼，谁想跟大叔你继续玩儿呢？呐~反正大叔也很闲吧
+          timeout: 触发后继时间：{successorTimeout}
+          predecessors: 前置问答？
+          successors: 后继问答
+        abstract:
+          has-pred: 存在前置
+          context-mode: 上下文后置
+      time:
+        detail: 触发时段：
+        invalid-input: 时间？大叔你不会连时间都不会看吧？
+    description: 添加教学对话
+  dialogue:
+    description: 触发教学对话
+    stats:
+      messages:
+        output: 收录了{questions}个问题，{dialogues}个答案。
+  broadcast:
+    description: 全服广播
+    options:
+      forced: 无视silent标签，直接广播
+      only: 只跟这号绑定的群里喊话
+    messages:
+      expect-text: 大叔，想让我帮你润色点什么？说吧，别磨磨唧唧的
+  callme:
+    description: 叫我亚亚就好，大叔。
+    messages:
+      current: 好的呢，{0}！
+      unnamed: 还不给人家起个称呼呢~哼
+      unchanged: 称呼没变哦~
+      empty: 称呼不能为空。
+      invalid: 称呼中禁止包含纯文本以外的内容。
+      duplicate: 禁止与其他用户重名。
+      updated: 好的，{0}，请多指教！
+      failed: 修改称呼失败。
+  alias:
+    description: 创建别名指令
+    messages:
+      created: 已创建指令别名 {0}。
+      updated: 已更新别名指令 {0}。
+  unalias:
+    description: 删除别名指令
+    messages:
+      deleted: 已删{0}了哦~
+      not-found: 未找到别名指令 {0}。
+  booru:
+    description: 搜索图片
+    options:
+      label: 指定图源标签
+    messages:
+      no-source: 没图？赶紧去装个booru插件！
+      no-result: 图呢？找不到？哼(ノ`ω´)ノ
+      no-image: 图片加载失败！哼，大叔的网络真差劲呐~
+      output:
+        desc: '{0}'
+        author: '作者: {0}'
+        homepage: '作者主页: {0}'
+        link: '页面地址: {0}'
+        source: '图源: {0}'
+        tags: '标签: {0}'
+      tips: 提示：{0}
+  chatluna:
+    description: ChatLuna相关指令。
+    room:
+      description: ChatLuna 房间管理。
+      create:
+        description: 创建一个新房间。
+        options:
+          name: 房间名字？大叔你是在玩什么无聊的游戏吗？
+          preset: 房间预设。
+          model: 房间模型。
+          chatMode: 房间聊天模式。
+          password: 房间密码？大叔想干嘛呢？♡
+          visibility: 房间可见性。
+        messages:
+          confirm_create: 直接创建？Y/N？
+          timeout: 哼，大叔你动作太慢了，房间都被取消了哟~
+          cancelled: 房间取消了哦~
+          enter_name: 房间名？  ( ｡ớ ₃ờ)ھ  Q退出。
+          change_or_keep: 你已{0}{1}：{2}，换不换？换就说新的{1}，不换就回N，退出回Q。
+          enter_model: 大叔，想用哪个模型？  openai/gpt-3.5-turbo  之类的？  (｡･ω･｡)ﾉ♡  回 Q 结束。
+          model_not_found: 找不到模型{0}，输对了吗？
+          enter_preset: 大叔，你要用哪个预设？ChatGPT？还是N（用默认的ChatGPT）？或者Q（退出）？
+          preset_not_found: 找不到{0}这个预设哦，大叔再试试？
+          enter_visibility: 选个可见性呗，public 还是 private？不想选就回个 N，要退出就回 Q。
+          visibility_not_recognized: 无法识别可见性：{0}，请重新输入。
+          enter_chat_mode: 选个模式吧，大叔。chat？还是N？烦死了，Q就滚蛋！
+          enter_password: 密码？123456？还是N？Q退出。
+          template_room_created: 房间做好了哦，大叔~
+          room_created: 房间号{0}，名字{1}，搞定！
+          action:
+            input: 输入
+            set: 设置
+            select: 选择
+          field:
+            name: 房间名
+            model: 模型
+            preset: 预设
+            visibility: 可见性
+            chat_mode: 聊天模式
+            password: 密码
+      delete:
+        description: 删除一个房间。
+        arguments:
+          room: 目标房间。
+        messages:
+          room_not_found: 房间？没找到哦~大叔找错地方了吧？
+          not_room_master: 你不是房主，删不了房间。
+          confirm_delete: 删房间{0}？消息全没了，成员也踢了！确定删就打Y，怂就滚
+          timeout: 超时了哦~大叔，取消啦~
+          cancelled: 已取消，大叔~
+          success: 已删除房间 {0}。
+      auto-update:
+        description: 设置模版克隆房间自动更新属性。
+        options:
+          room: 指定房间。
+        messages:
+          room_not_found: 房间？大叔找错了地方吧？哼
+          not_template_clone: 这破房间不能自动更新，真麻烦！
+          not_admin: 你不是房主，不能设自动更新房间。
+          success: 房间{0}自动更新已设为{1}。
+          invalid-status: 大叔，你给的参数不对喔～只能是true或false啦！
+      kick:
+        description: 踢出那个家伙！
+        messages:
+          no_room_specified: 大叔，没指定房间呢，用`chatluna.room.switch`换个房间吧
+          not_admin: 你不是{0}的管理员，踢不了人。
+          success: 已踢 {0}：{1} 出房间
+      invite:
+        description: 进来啊，大叔～
+        messages:
+          no_room_specified: 大叔，房间都没选好就想撩人家？先用 `chatluna.room.switch` 命令换个房间再说呐~
+          not_admin: 你不是{0}的管理员，不能邀请用户。
+          success: 哟，大叔，{0}这小子进{1}来了呐~
+      join:
+        description: 加入某个房间。
+        arguments:
+          id: 房间ID或名称。
+        messages:
+          room_not_found: 没找到房间？你瞎啊
+          not_in_group: 该房间不在群里哦~
+          private_no_password: 这房间私密得很，没密码，房主不邀请进不去。
+          private_group_join: 这房间是私人的，要密码才能进，别想混进来了。
+          enter_password: 密码？{0}  哼，快说吧，大叔。
+          timeout: 超时了，取消了哦~
+          wrong_password: 密码错啦，大叔~操作取消咯
+          success: 已加入房间 {0}
+      leave:
+        description: 离开当前房间。
+        arguments:
+          room: 目标房间。
+        messages:
+          room_not_found: 房间？大叔你找不着路了？真逊啊~
+          confirm_delete: 房主退出，房间删除。确定删除？输入 Y 确认。
+          timeout: 超时了，取消了哦~
+          cancelled: 已取消你的操作，哼~
+          success: 滚出{0}了！自己爬回去，或者换个窝吧。
+      clear:
+        description: 清除指定房间的聊天记录。
+        arguments:
+          room: 目标房间。
+        messages:
+          success: 已清除{0}的聊天记录。
+          no-room: 没找到房间？哼，大叔你找错地方了吧？
+      set:
+        description: 设置房间的属性。
+        options:
+          name: 房间名字？哼，大叔你以为我会告诉你吗？
+          preset: 房间预设。
+          model: 房间模型。
+          chatMode: 房间聊天模式。
+          password: 房间密码？大叔，你不会是想偷偷溜进我的房间吧？♡
+          visibility: 房间可见性。
+        messages:
+          room_not_found: 没找到房间？真是笨蛋大叔呢~
+          not_room_master: 大叔，你算老几，敢管我的房间？
+          confirm_update: 更新房间属性？Y/N？
+          timeout: 超时了哦，大叔～房间属性没设置好呢
+          cancelled: 取消房间设置了哦~
+          no_password_in_public: 非私有房间或群聊不能设密码哦~
+          change_or_keep: 你选了{0}：{1}，换不换？N(否)/Q(退出)，换就说新的{0}。
+          model_not_found: 找不到模型{0}哦，大叔再试试？
+          preset_not_found: 找不到预设{0}，重新输入吧~
+          invalid_visibility: 无法识别可见性：{0}，请重新输入。
+          enter_password: 密码？123456？还是N？Q退出。
+          success_with_clear: 房间 {0} 更新完毕，聊天记录已清空。
+          success: 房间 {0} 更新啦~
+          field:
+            name: 房间名
+            model: 模型
+            preset: 预设
+            visibility: 可见性
+            chat_mode: 聊天模式
+            password: 密码
+      list:
+        description: 就这点就想难住我？哼╭(╯^╰)╮
+        options:
+          page: 页码。
+          limit: 每页几张？
+        messages:
+          header: 大叔，你这是在查岗吗？
+          footer: 切换房间？用chatluna.room.switch <name/id>就行啦，笨蛋大叔
+          pages: 现在是第 [page] / [total] 页，哼
+          room_name: '房间名: {0}'
+          room_id: '房间ID: {0}'
+          room_preset: '房间预设: {0}'
+          room_model: '房间模型: {0}'
+          room_visibility: '房间可见性: {0}'
+          room_chat_mode: '房间聊天模式: {0}'
+          room_master_id: '房间创建者ID: {0}'
+          room_availability: 房间可用性：{0}
+      transfer:
+        description: 房主换房间了。
+        messages:
+          room_not_found: 房间？没找到哦~
+          not_room_master: 大叔，你没资格把房间给别人哦~
+          confirm_transfer: 确定把{0}给{1}当房主？你将失去权限哦～输入Y确认呐～
+          timeout: 超时了，取消了哦~
+          cancelled: 已取消，大叔~
+          success: 房间{0}归{1}了哦~
+      info:
+        description: 查看当前房间的信息。
+        arguments:
+          room: 目标房间。
+        messages:
+          room_not_found: 房间？大叔你找房间干嘛？哼~找不到活该！
+          header: 大叔现在所在的地方，信息如下
+          room_name: '房间名: {0}'
+          room_id: '房间ID: {0}'
+          room_preset: '房间预设: {0}'
+          room_model: '房间模型: {0}'
+          room_visibility: '房间可见性: {0}'
+          room_chat_mode: '房间聊天模式: {0}'
+          room_master_id: '房间创建者ID: {0}'
+      switch:
+        description: 烦死了，大叔，自己去切换房间啦。
+        arguments:
+          name: 房间名儿？或者ID？
+        messages:
+          success: 已切换到{0}房间。
+          room_not_found: 房间？没找到哦~大叔是不是走错地方啦？嘻嘻♡
+      permission:
+        description: 修改那家伙的权限呗
+        options:
+          room: 指定房间。
+          user: 目标用户。
+        messages:
+          room_not_found: 没找到房间哦？
+          not_admin: 你不是房主，没资格管权限。
+          confirm_set: 确定给{0}用户设置{1}房间的权限吗？权限只有member和admin两种。确定就输入权限或首字母，其他算取消。
+          timeout: 超时了，取消了哦~
+          invalid_permission: 权限不足，取消操作。
+          success: 用户{0}在房间{1}的权限已设为{2}
+      mute:
+        description: 禁言那个杂鱼，别让他再唧唧歪歪了。
+        options:
+          room: 指定房间。
+        messages:
+          room_not_found: 房间？没找到哦~大叔找错地方了吧？
+          not_admin: 你不是{0}管理员，禁不了言哦
+          success: 已禁言/解除{0}在{1}的权限。
+    chat:
+      description: ChatLuna 对话相关指令。
+      text:
+        description: 跟AI聊天呗
+        options:
+          room: 指定对话的目标房间。
+          type: 设置消息渲染类型。
+        examples:
+        - chatluna chat text -t text 你好，世界！
+        - chatluna chat text -t voice 你好，世界！
+        - chatluna chat text -r 原神 -t text 你好，世界！
+        arguments:
+          message: 大叔想让我说什么呢？😏
+        messages:
+          invalid-render-type: 渲染类型错啦！只能用`text`或`voice`哦~
+      rollback:
+        description: 大叔这么快就想人家了嘛？
+        options:
+          room: 哪个房间？
+        arguments:
+          message: 新的消息内容。
+        messages:
+          room_not_found: 房间？没找到哦~(*ノ` ▽´)
+          conversation_not_exist: 房间不存在。
+          no_chat_history: 找不到对话记录。哼，大叔你记性这么差吗？
+          invalid_chat_history: 大叔，聊天记录弄坏了？重试一下呗~
+      stop:
+        description: 立即停止当前对话。
+        options:
+          room: 指定要停止对话的房间。
+        messages:
+          room_not_found: 房间？哪来的房间？大叔你迷路了吗？(ಡωಡ)
+          no_active_chat: 当前未在房间中对话。
+          stop_failed: 停止对话失败。
+          success: 已成功停止当前对话。
+      voice:
+        description: 跟那破模型对话，再把它的废话念出来。
+        options:
+          room: 指定对话的目标房间。
+          speaker: 设置语音服务用{0}
+        arguments:
+          message: 要发送的消息内容。
+    wipe:
+      description: 清空 ChatLuna 的所有数据？谨慎点哦～
+      messages:
+        confirm_wipe: 大叔，你要删掉所有ChatLuna的数据？！会话、缓存、数据库，全都要没了哦？算式结果呢？{0}
+        timeout: 删不掉，取消了
+        incorrect_input: 大叔，你输入错了哦～取消删除了哟～
+        success: 删了，重启中~
+    auth:
+      description: ChatLuna 鉴权相关指令。
+      list:
+        description: 列出授权组。
+        options:
+          page: 页码。
+          limit: 每页几行字？
+          platform: 指定平台。
+        messages:
+          header: 大叔，这就是你想要的配额组列表哦～
+          footer: 用 chatluna.auth.add <name/id> 加组，知道了吗？
+          pages: 现在是第[page]页，总共[total]页
+          name: 名称：{0}
+          platform: 适用模型平台：{0}
+          cost: 计费：{0} / 1000 token
+          priority: '优先级: {0}'
+          support_models: 限制模型：{0}
+          limit_per_min: 并发限制每{0}条消息/分
+          limit_per_day: 并发限制每 {0} 条消息/天
+          general: 通用
+      add:
+        description: 把用户塞进那个配额组里去。
+        usage: 使用方法：chatluna auth add <组名> -u @用户
+        options:
+          user: 目标用户。
+        messages:
+          permission_denied: 你的权限不足以执行此操作。
+          success: 把{0}加到{1}组里了。
+      kick:
+        description: 把用户踢出那个配额组。
+        usage: 使用方法：踢人！chatluna auth kick <组名> -u @用户
+        options:
+          user: 目标用户。
+        messages:
+          permission_denied: 你的权限不足以执行此操作。
+          success: 已将用户{0}踢出{1}配额组
+      create:
+        description: 创建一个新的授权组。
+        options:
+          name: 授权组名称。
+          preMin: 每分钟请求限额。
+          preDay: 每日请求限额。
+          platform: 指定平台。
+          supportModels: 支持的模型列表。
+          priority: 优先级。
+          cost: token费用。
+        messages:
+          enter_name: 大叔，要哪个配额组？快点说呀，人家等着呢~
+          name_exists: 名字重复啦，大叔，换个试试？
+          enter_limit_per_min: 每分钟限额条数（必须是大于0的数字）
+          enter_limit_per_day: 每天限额要比每分钟限额多哦~
+          enter_platform: 用哪个模型平台？(openai 或 N)
+          enter_priority: 配额组优先级（数字，越大越优先）
+          enter_cost: 大叔，一千个token要多少钱？(๑˃̵ᴗ˂̵)و
+          enter_models: N
+          invalid_input: 你输入的{0}有误，请重新输入。
+          confirm_create: 直接创建？Y/N？其他视为取消。
+          timeout: 超时了哟，大叔~配额组没创建成功哦~
+          cancelled: 配额组已取消。
+          success: 配额组{0}创建好了哦~
+          change_or_keep: 你已{0}{1}：{2}，换不换？换就说新的{1}，不换就回N。
+          invalid_models: 模型组里有不支持的模型，请重新输入。哼，大叔真笨~
+          action:
+            input: 输入
+            set: 设置
+            select: 选择
+          field:
+            name: 配额组名
+            limit_per_min: 每分钟只能发几条
+            limit_per_day: 每天只能发几条
+            platform: 平台标识符
+            priority: 优先级
+            cost: 钱
+            models: 模型列表
+      set:
+        description: 改改授权组参数呗
+        options:
+          name: 授权组名称。
+          preMin: 每分钟请求限额。
+          preDay: 每日请求限额。
+          platform: 指定平台。
+          supportModels: 支持的模型列表。
+          priority: 优先级。
+          cost: token 费用。
+        messages:
+          confirm_set: 直接改配额组？Y/N？其他的算取消。
+          timeout: 你超时了，配额组取消了哦~
+          cancelled: 配额组已取消修改。
+          enter_name: 大叔，选个配额组呗～  (๑˃̵ᴗ˂̵)و  OpenAI配额组什么的～  不想选就回Q～
+          name_exists: 名字撞车了，大叔，换个试试？
+          enter_limit_per_min: 每分钟限额条数（大于0，输入Q退出）：
+          enter_limit_per_day: 每天限额（数字，必须大于每分钟限额）？回 Q 退出
+          enter_platform: 模型平台ID (例如：openai，否则回复N，退出请回复Q)
+          enter_priority: 配额组优先级 (数字，越大越优先)，Q退出。
+          enter_cost: 一千token多少钱？(回复Q退出)
+          enter_models: Enter the allowed model list (whitelist) separated by commas,
+            e.g., (openai/gpt-3.5-turbo, openai/gpt-4). Reply with N to skip or Q
+            to quit.
+          invalid_input: 你输入的{0}有误，请重新输入。
+          change_or_keep: 你已{0}{1}：{2}，换不换？换就说新的{1}，否则N，Q退出。
+          invalid_models: 模型组里有不支持的模型，请重新输入。哼，真麻烦。
+          success: 配额组改名啦，现在叫{0}了。
+          action:
+            input: 输入
+            set: 设置
+            select: 选择
+          field:
+            name: 配额组名
+            limit_per_min: 每分钟限额条数
+            limit_per_day: 每天就这点破事？
+            platform: 平台标识符
+            priority: 优先级
+            cost: 哼，这点小钱就想打发人家？
+            models: 模型列表
+    balance:
+      description: ChatLuna 余额相关指令。
+      clear:
+        description: 清除指定用户的余额，重置为0。
+        arguments:
+          user: 目标用户。
+        examples:
+        - chatluna balance clear --user @用户名
+        messages:
+          success: 大叔的{0}账户余额改成{1}啦~
+      set:
+        description: 改用户余额，加减都行。
+        arguments:
+          user: 目标用户。
+          amount: 要设的余额数。
+        examples:
+        - chatluna balance set --user @用户名 --amount 1000
+        messages:
+          success: 大叔的钱钱已经改成{1}了哦~{0}
+      query:
+        description: 查余额，不说是谁就查我的。
+        arguments:
+          user: 没指定就查你呗
+        examples:
+        - chatluna balance query
+        - chatluna balance query --user @用户名
+        messages:
+          success: 用户 {0} 余额{1}，穷鬼~
+    model:
+      description: ChatLuna 模型相关指令。
+      list:
+        description: 列出所有可用的模型。
+        usage: chatluna model list --page 1 --limit 10
+        options:
+          page: 页码。
+          limit: 每页几行？
+        messages:
+          header: 以下是目前可用的模型列表：
+          footer: 用 chatluna.room.set -m <model>  来换模型呐~
+          pages: 现在是第[page]页，总共[total]页
+    preset:
+      description: ChatLuna 预设相关指令。
+      list:
+        description: 列出当前支持的所有预设。
+        options:
+          page: 指定页码
+          limit: 每页显示多少？
+        messages:
+          header: 大叔，这就是预设列表，看看呗～
+          footer: 用 chatluna.room.set -p <preset> 设置默认预设吧
+          pages: 第 [page] / [total] 页
+          preset_keyword: 预设关键词： {0}
+          preset_content: 预设内容： {0}
+      add:
+        description: 添加新预设。
+        arguments:
+          preset: 预设名称
+        messages:
+          conflict: 大叔，你这关键词都撞车了，换个再试试？
+          prompt: 预设内容？大叔你真啰嗦！
+          timeout: 添加预设超时，取消了：{0}
+          success: 预设{0}已添加，用预设列表命令查看吧。
+      clone:
+        description: 复制现有预设。
+        arguments:
+          originPreset: 源预设名称
+          newPresetName: 新预设名称
+        messages:
+          conflict: 关键词冲突啦，大叔换个试试？
+          confirm: 确定要克隆{0}吗？输入Y确认。
+          timeout: 超时了哦，大叔~自动取消了哟
+          cancelled: 已取消你的操作。
+          success: 克隆成功，预设名称：{0}。查列表吧。
+      set:
+        description: 修改现有预设。
+        arguments:
+          preset: 预设名称
+        messages:
+          not_found: 找不到指定的预设。哼，大叔，连这点小事都办不好？
+          not_support: 不支持改{0}预设！这预设太复杂了，改不了，自己去控制面板改吧。
+          timeout: 超时了哦，大叔～自动取消啦～
+          cancelled: 已取消。
+          enter_content: 请把你的新设定发来。
+          success: 预设{0}修改好了哦～快去看看吧～
+      delete:
+        description: 删除指定预设。
+        arguments:
+          preset: 预设名称
+        messages:
+          only_one_preset: 删了就没了，不能删哦~
+          not_found: 找不到那个玩意儿！大叔你输对了吗？
+          confirm_delete: 删不删{0}？输入Y确认，其他取消。删了就找不回来了哦~
+          timeout: 取消删除预设超时，预设{0}已保存。
+          cancelled: '已取消删除预设: {0}'
+          success: 已删除预设：{0}，重启中。
+    embeddings:
+      description: ChatLuna 嵌入模型管理。
+      list:
+        description: 查看支持的嵌入模型列表。
+        options:
+          page: 指定页码。
+          limit: 每页显示多少？
+        messages:
+          header: 大叔，就这几个破模型也想难住人家？
+          footer: 用 chatluna.embeddings.set <model>  设置默认嵌入模型
+          pages: 现在是第[page]页，一共[total]页
+      set:
+        description: 设置默认嵌入模型。
+        arguments:
+          embeddings: 嵌入模型名称。
+        messages:
+          usage_hint: 用 chatluna.embeddings.set <model>  设默认嵌入模型
+          multiple_models_found:
+            header: 找到了几个模型，大叔要不要看看？
+            footer: 请输入更精确的嵌入模型名称以避免歧义
+            example: 例如：chatluna.embeddings.set {0}
+          model_not_found: 找不到对应的嵌入模型，请检查输入是否正确
+          success: 已设默认模型为{0}，插件重启生效
+    vectorstore:
+      description: ChatLuna，向量数据库，管理。
+      list:
+        description: 查看支持的向量数据库列表。
+        options:
+          page: 指定页码。
+          limit: 每页显示多少？
+        messages:
+          header: 大叔，向量数据库？就这几个？啧，少得可怜呐~
+          footer: 用`chatluna.vectorstore.set <model>`设置默认向量数据库，没设置就用内存数据库（临时）
+          pages: 现在是第[page]页，一共[total]页
+      set:
+        description: 设置默认向量数据库。
+        arguments:
+          vectorStore: 向量数据库？哼，那种东西也配让我费心？
+        messages:
+          usage_hint: 用 chatluna.vectorstore.set <model> 设置默认向量数据库呐~
+          multiple_stores_found:
+            header: 找到几个向量数据库，就这？
+            footer: 大叔，说清楚点，哪个向量数据库？别磨磨唧唧的
+            example: 例如：chatluna.vectorstore.set {0}
+          store_not_found: 数据库在哪儿？大叔找错地方了吧？找不到？(ಡωಡ)hiahiahia
+          success: 已设默认向量数据库为{0}，(插件重启生效)
+general:
+  $: 通用设置
+  name: 中文
+  paren: （{0}）
+  quote: “{0}”
+  comma: ，
+  and: 和
+  or: 或
+  day: 天
+  hour: 小时
+  minute: 分钟
+  second: 才几秒钟？大叔不行啊~
+  days:
+  - 日
+  - 一
+  - 二
+  - 三
+  - 四
+  - 五
+  - 六
+  everyday: 每天 {0}
+  everyweek: 每周{0} {1}
+  interval: 每隔 {0} (剩余 {1})
+internal:
+  $: 核心文本
+  error-encountered: 发生未知错误。
+  low-authority: 权限不足。哼，大叔连这点小事都办不好，真没用呢。(╯‵□′)╯︵┻━┻
+  prompt-argument: 请发送{0}。
+  insufficient-arguments: 缺少参数，输入帮助以查看用法。
+  redunant-arguments: 多余参数！查用法去！
+  invalid-argument: 参数{0}错啦，{1}
+  unknown-option: 有啥我不知道的玩意儿{0}，要看说明书自己看呐~
+  invalid-option: 选项{0}，错啦！{1}
+  check-syntax: 大叔想看说明书？真没劲呐~
+  invalid-number: 哼，要数字？给你7，怎么样？够不够？
+  invalid-integer: 哼，一个整数？大叔真是无聊呢~  (๑˃̵ᴗ˂̵)و  随便给你一个好了，7
+  invalid-posint: 大叔，想要什么数字？随便说一个呗~
+  invalid-natural: 要什么非负整数？哼，随便给个好了，123456789！呐~反正大叔也很闲吧
+  invalid-date: 合法的时间？大叔，你是在考验我的耐心吗？
+  invalid-user: 请指定正确的用户。
+  invalid-channel: 哪个频道？哼，别想糊弄我哦~
+  invalid-image: 请输入图片。
+  suggest-hint: 大叔找的是{0}吗？
+  suggest-command: 回复句号，试试看我的推测呗
+  usage-exhausted: 调用次数已达上限。哼，大叔，没钱了？
+  too-frequent: 大叔，你烦不烦啊，再用这么快，人家要罢工了！
+  option-not-usage: (不计入调用)
+  command-max-usage: 已调用次数：{0}/{1}。
+  command-min-interval: 距离下次调用还需：{0}/{1} 秒。
+admin:
+  user-option: 指定目标用户
+  user-not-found: 未找到指定的用户。哼，大叔找错人了？
+  user-unchanged: 用户数据未改动。
+  user-updated: 哼，修改了？就这点本事？
+  channel-option: 指定目标频道
+  channel-not-found: 未找到指定的频道。
+  channel-unchanged: 频道数据没变哦~
+  channel-updated: 频道数据改好了哦～
+  not-in-group: 不在群里，用-c指定频道吧
+  user-expected: 目标用户是哪个？
+  channel-expected: 目标频道？大叔你指哪？
+  invalid-assignee-platform: 必须同平台哦~
+  current-locale: 当前语言偏好为：{0}。
+  no-locale: 未设置语言偏好。
+  options:
+    remove: 重置设置
+lobby:
+  exception:
+    busy-1: 还在{id}这破地方待着呢？想走就输入『room leave』呗
+    busy-2: 同步中…房间{id}，想走？输『room leave』
+    not-in-room: 大叔，你在哪间小黑屋里自嗨呢？
+    room-not-found: 房间 {0} 不存在。
+    player-not-found: 房间里没有{0}号玩家哦～
+    expect-host: 只有房主才能这么做哦~
+    target-host: 不能对房主那样做哦~
+    game-not-found: 房间里啥游戏都没有，真没意思~
+  system:
+    join: 系统消息：{0} 加入了房间。
+    leave: 系统消息：{0} 离开了房间。
+    leave-transfer: 系统消息：{1}跑了，房主现在是{0}了。
+    transfer: 系统消息：{1} 把房子给了{0}。
+    kick: 系统消息：{0} 被房主踢了哦~
+    kick-self: 系统消息：你被房主踢出去了。
+    destroy: 系统消息：房间已解散。
+    start: 系统消息：游戏开始。
+    game: 系统消息：房间游戏已设为{0}。
+    pause: 继续？大叔真啰嗦呐~
+    pause-response: 等其他玩家确认...哼，真慢呐~
+    ready: 都准备好了吗？游戏开始了！
+    confirm: Y or N？
+    cancel: 哼，一群废物，游戏取消了~
+    terminated: 系统消息：游戏挂了。
+  speech:
+    player: '{0}：'
+  game:
+    mahjong:
+      invalid-player-count: 必须4个人一起玩呐~
+    rps:
+      invalid-player-count: 必须两个人玩呐~
+      input: 第 {0} 轮，选石头[R]布[P]剪刀[S]
+      choice:
+        r: 石头
+        p: 布
+        s: 剪刀
+      accepted: 你选了{0}？等着挨打吧~
+      output: '{0} 出了{1}'
+      timeout: '{0} 没有按时出招'
+      result-0: '{0}，{1}，平局。<p>{2}</p>'
+      result-1: '{0}，{1}，{2} 获胜！
+
+        <p>{3}</p>'
+      score: 当前比分：{0}：{1}，{2}：{3}。
+      finish: 游戏结束，{0} 获胜！
+protocol: 要用的协议名。
+host: 要连哪台破机器？
+port: 哪个端口？
+username: 大叔想用什么用户名呢？
+password: 密码？哼，大叔想偷看我的小秘密？
+database: 大叔想进哪个数据库？
+writeConcern:
+  $description: Write Concern
+  w:
+    $description: 写关注度
+    $value:
+    - Default
+    - Custom
+    - 大多数
+  wtimeoutMS: 写操作超时了
+  journal: 日志写入关注度
+user: 大叔想用哪个用户名呢？
+ssl:
+  $description: SSL高级选项。
+  $value:
+  - 默认值
+  - $description: 自定义
+    rejectUnauthorized: 不接受用过期证书的家伙。
+path: 数据库路径。
+base: 默认显示当前路径，大叔~
+root: 要监听的文件或目录，相对于base路径。
+ignored: 忽略的文件或目录，支持Glob Patterns语法。
+debounce: 更新等多久触发？
+booru:
+  tips:
+    general:
+    - 没参数？随便给你张图咯
+    - 用 `-l <label>` 或 `--label <label>` 指定图源标签
+    - 想指定几张图？用`-c <count>`或`--count <count>`参数就行啦
+    - 用`{0} -c 3`能得到3张图
+    - 图片数量可能不对哦~
+chatluna:
+  aborted: 已成功停止当前对话的生成。
+  thinking_message: 大叔，还在想呢，前面还有{0}条消息要回，等等~”
+  block_message: 哎呀(ｷ｀ﾟДﾟ´)!!，被拉黑了？问主人去！
+  error_message: ChatLuna出错了，错误码是%s。快去找开发者哭诉吧！
+  middleware_error: '执行 {0} 时出现错误: {1}'
+  chat_limit_exceeded: 聊天次数用完了喵，还要等{0}分钟才能继续聊哦 >_<
+  room:
+    random_switch: 大叔没选房间哦？随便给你塞到{0}啦~
+    not_joined: 还没进房间呢，快来呀~
+    not_in_room: 大叔还没进房间{0}呢？
+    muted: 你被禁言了，不能在{0}说话哦~
+    unavailable: 房间坏了？这就修好，哼(｀∀´)
+    auto_switch: 用户{0}，自动跳到{1}号房了哦~
+    auto_create: 用户{0}的房间{1}已自动创建完毕哦～
+    auto_create_template: 用户{0}的模版房间{1}已自动创建完毕～
+  config_changed: 模版房间{0}配置已更新。
+  cooldown_wait_message: 等{0}秒再聊喵~

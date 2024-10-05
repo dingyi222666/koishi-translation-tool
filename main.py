@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import os
 import yaml
 
+
 def read_xliff(file_path):
     # 解析 XLIFF 文件
     tree = ET.parse(file_path)
@@ -36,9 +37,11 @@ def read_xliff(file_path):
                 target = target_elem.text if target_elem is not None else None
 
                 # 将翻译单元添加到字典中
-                translations[unit_id] = {'resname': resname, 'source': source, 'target': target, 'file': original}
+                translations[unit_id] = {
+                    'resname': resname, 'source': source, 'target': target, 'file': original}
 
     return translations
+
 
 def merge_dict(target, source):
     for key, value in source.items():
@@ -69,8 +72,10 @@ def merge_dict(target, source):
             target[key] = value
     return target
 
+
 def remove_quotes(key):
     return key.strip('"')
+
 
 def create_yaml_from_translations(translations, output_file):
     yaml_data = {}
@@ -84,7 +89,7 @@ def create_yaml_from_translations(translations, output_file):
             continue
 
         path = [remove_quotes(part) for part in resname.split('.')]
-
+        print(path)
         current = source
         for i in range(len(path) - 1, -1, -1):
             if path[i].isdigit():
@@ -109,9 +114,11 @@ def create_yaml_from_translations(translations, output_file):
     with open(output_file, 'w', encoding='utf-8') as f:
         yaml.dump(yaml_data, f, allow_unicode=True, sort_keys=False, Dumper=MultilineDumper)
 
+
 def load_yaml(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         return yaml.safe_load(file)
+
 
 def merge_yaml_files(file1, file2, output_file):
     # 加载两个 YAML 文件
@@ -132,7 +139,9 @@ def merge_yaml_files(file1, file2, output_file):
             return super().represent_scalar(tag, value, style)
 
     with open(output_file, 'w', encoding='utf-8') as f:
-        yaml.dump(merged_data, f, allow_unicode=True, sort_keys=False, Dumper=MultilineDumper)
+        yaml.dump(merged_data, f, allow_unicode=True,
+                  sort_keys=False, Dumper=MultilineDumper)
+
 
 # 使用示例
 if __name__ == '__main__':
@@ -141,12 +150,12 @@ if __name__ == '__main__':
 
     # 打印结果
     for unit_id, translation in result.items():
-        print(f"ID: {unit_id}")
+        """ print(f"ID: {unit_id}")
         print(f"File: {translation['file']}")
         print(f"Resname: {translation['resname']}")
         print(f"Source: {translation['source']}")
         print(f"Target: {translation['target']}")
-        print("---")
+        print("---") """
 
     # 打印条目数量
     print(f"原始条目数量: {len(result)}")
@@ -159,7 +168,7 @@ if __name__ == '__main__':
     # 统计过滤后的条目数量
     with open(output_yaml, 'r', encoding='utf-8') as f:
         filtered_yaml = yaml.safe_load(f)
-    
+
     def count_items(d):
         count = 0
         for v in d.values():
@@ -179,6 +188,6 @@ if __name__ == '__main__':
     # 统计合并后的条目数量
     with open('merged_output.yml', 'r', encoding='utf-8') as f:
         merged_yaml = yaml.safe_load(f)
-    
+
     merged_count = count_items(merged_yaml)
     print(f"合并后条目数量: {merged_count}")
